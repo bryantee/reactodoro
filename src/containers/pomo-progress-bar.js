@@ -4,15 +4,18 @@ import CircularProgressbar from 'react-circular-progressbar';
 class PomoProgressBar extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       currentSeconds: 0,
       totalSeconds: (props.totalMinutes * 60),
       percentage: 0,
       complete: false
     }
+
+    this.startPomo = this.startPomo.bind(this);
   }
 
-  componentDidMount() {
+  startPomo() {
     setInterval( () => {
       // check if pomo is complete
       if (this.state.currentSeconds === this.state.totalSeconds + 1) {
@@ -34,6 +37,7 @@ class PomoProgressBar extends React.Component {
           initialAnimation={true}
           textForPercentage={(percentage) => `${Math.ceil((((100 - percentage) / 100) * this.state.totalSeconds) / 60)}`}
         />
+        <button className="start-pomo-btn" onClick={this.startPomo}>Start Pomo</button>
       </div>
     )
   }
