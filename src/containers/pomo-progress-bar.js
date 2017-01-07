@@ -10,8 +10,7 @@ class PomoProgressBar extends React.Component {
       totalSeconds: null,
       percentage: 0,
       complete: false,
-      isRunning: false,
-      isPaused: false
+      isRunning: false
     }
 
     this.startPomo = this.startPomo.bind(this);
@@ -22,20 +21,20 @@ class PomoProgressBar extends React.Component {
 
     // set correct state each time startPomo is called
     this.setState({
-      isRunning: true,
-      isPaused: false
+      isRunning: true
     });
 
     // start setInterval for timer and return ID
     // so that it can be cleared at anytime
     let intervalId = setInterval( () => {
-      if (this.state.isPaused) {
+      if (!this.state.isRunning) {
         clearInterval(intervalId);
-        return this.setState({ isRunning: false });
+        return;
       }
       // check if pomo is complete, return if it is
       if (this.state.currentSeconds === this.state.totalSeconds + 1) {
-        this.setState({ complete: true });
+        this.setState({ complete: true, isRunning: false });
+        clearInterval(intervalId);
         return;
       }
       // set the state for percentage during each loop through
@@ -48,7 +47,7 @@ class PomoProgressBar extends React.Component {
 
   pausePomo() {
     console.log('Pause function called');
-    this.setState({ isPaused: true });
+    this.setState({ isRunning: false });
   }
 
   render () {
