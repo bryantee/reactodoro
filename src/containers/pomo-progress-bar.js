@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import CircularProgressbar from 'react-circular-progressbar';
+import CircularProgress from '../components/circular-progress';
 
 class PomoProgressBar extends React.Component {
   constructor(props) {
@@ -53,11 +53,7 @@ class PomoProgressBar extends React.Component {
   render () {
     return (
       <div className="pomodoro-progress-bar">
-        <CircularProgressbar
-          percentage={this.state.percentage}
-          initialAnimation={true}
-          textForPercentage={(percentage) => `${Math.ceil((((100 - percentage) / 100) * this.state.totalSeconds) / 60)}`}
-        />
+        <CircularProgress percentage={this.state.percentage} totalSeconds={this.state.totalSeconds}/>
         <button className="start-pomo-btn" onClick={this.state.isRunning ? this.pausePomo : this.startPomo}>{this.state.isRunning ? 'Pause' : 'Start'}</button>
         <input type="text" placeholder="Enter a value in minutes" value={this.state.totalSeconds / 60} onChange={ (event) => this.setState({ totalSeconds: (event.target.value * 60)}) }></input>
       </div>
