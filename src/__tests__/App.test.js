@@ -11,6 +11,6 @@ describe('Simple smoke tests', () => {
 
   it('Pomo progress bar renders without crashing', () => {
     const pomo = document.createElement('pomo');
-    ReactDOM.render(<PomoProgressBar totalMinutes={10} />, pomo);
+    ReactDOM.render(<PomoProgressBar />, pomo);
   });
 });

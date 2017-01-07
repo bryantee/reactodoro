@@ -5,8 +5,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        Hello World
-        <PomoProgressBar totalMinutes={.1} />
+        <PomoProgressBar />
       </div>
     );
   }

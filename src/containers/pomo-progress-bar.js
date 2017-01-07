@@ -7,7 +7,7 @@ class PomoProgressBar extends React.Component {
 
     this.state = {
       currentSeconds: 0,
-      totalSeconds: (props.totalMinutes * 60),
+      totalSeconds: null,
       percentage: 0,
       complete: false,
       isRunning: false,
@@ -60,6 +60,7 @@ class PomoProgressBar extends React.Component {
           textForPercentage={(percentage) => `${Math.ceil((((100 - percentage) / 100) * this.state.totalSeconds) / 60)}`}
         />
         <button className="start-pomo-btn" onClick={this.state.isRunning ? this.pausePomo : this.startPomo}>{this.state.isRunning ? 'Pause' : 'Start'}</button>
+        <input type="text" placeholder="Enter a value in minutes" value={this.state.totalSeconds / 60} onChange={ (event) => this.setState({ totalSeconds: (event.target.value * 60)}) }></input>
       </div>
     )
   }
