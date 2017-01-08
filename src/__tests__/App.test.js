@@ -9,8 +9,12 @@ describe('Simple smoke tests', () => {
     ReactDOM.render(<App />, div);
   });
 
-  it('Pomo progress bar renders without crashing', () => {
+  it('Pomo container renders without crashing', () => {
     const pomo = document.createElement('pomo');
     ReactDOM.render(<PomoProgressBar />, pomo);
   });
+
+  it('Pomo progress bar component renders without crashing');
+  it('Timer form component renders without crashing');
+  it('Start  / Pause component renders without crashing');
 });
