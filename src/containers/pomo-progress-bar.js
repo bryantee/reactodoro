@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import CircularProgress from '../components/circular-progress';
+import ChangeTimeForm from '../components/change-time-form';
+import StartPausePomoButton from '../components/start-pause-pomo-button';
 
 class PomoProgressBar extends React.Component {
   constructor(props) {
@@ -15,6 +17,7 @@ class PomoProgressBar extends React.Component {
 
     this.startPomo = this.startPomo.bind(this);
     this.pausePomo = this.pausePomo.bind(this);
+    this.setPomoMinutes = this.setPomoMinutes.bind(this);
   }
 
   startPomo() {
@@ -50,12 +53,16 @@ class PomoProgressBar extends React.Component {
     this.setState({ isRunning: false });
   }
 
+  setPomoMinutes(event) {
+    this.setState({ totalSeconds: (event.target.value * 60)});
+  }
+
   render () {
     return (
       <div className="pomodoro-progress-bar">
         <CircularProgress percentage={this.state.percentage} totalSeconds={this.state.totalSeconds}/>
-        <button className="start-pomo-btn" onClick={this.state.isRunning ? this.pausePomo : this.startPomo}>{this.state.isRunning ? 'Pause' : 'Start'}</button>
-        <input type="text" placeholder="Enter a value in minutes" value={this.state.totalSeconds / 60} onChange={ (event) => this.setState({ totalSeconds: (event.target.value * 60)}) }></input>
+        <ChangeTimeForm onChange={this.setPomoMinutes}/>
+        <StartPausePomoButton className="start-pomo-btn" isRunning={this.state.isRunning} pause={this.pausePomo} start={this.startPomo} />
       </div>
     )
   }

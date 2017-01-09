@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from '../App';
 import PomoProgressBar from '../containers/pomo-progress-bar';
 import CircularProgress from '../components/circular-progress';
+import ChangeTimeForm from '../components/change-time-form';
+import StartPausePomoButton from '../components/start-pause-pomo-button';
 
 describe('Simple smoke tests', () => {
   it('App renders without crashing', () => {
@@ -19,6 +21,12 @@ describe('Simple smoke tests', () => {
     const circularProgress = document.createElement('circularProgress');
     ReactDOM.render(<CircularProgress totalSeconds={totalSeconds} percentage={percentage} />, circularProgress);
   });
-  it('Timer form component renders without crashing');
-  it('Start  / Pause component renders without crashing');
+  it('ChangeTimeForm component renders without crashing', () => {
+    const form = document.createElement('form');
+    ReactDOM.render(<ChangeTimeForm onChange={() => {1+1}} />, form);
+  });
+  it('Start  / Pause component renders without crashing', () => {
+    const button = document.createElement('button');
+    ReactDOM.render(<StartPausePomoButton />, button);
+  });
 });
