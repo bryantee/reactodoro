@@ -9,9 +9,9 @@ const ActivityList = (props) => {
   return (
     <div>
       <AddActivityForm handleSubmit={props.handleSubmit} handleTextChange={props.handleTextChange} value={props.addActivityText}/>
-      <div onClick={props.handler}>
+      <ul onClick={props.handler}>
         {activityList}
-      </div>
+      </ul>
     </div>
   );
 }

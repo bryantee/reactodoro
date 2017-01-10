@@ -10,6 +10,7 @@ import StartPausePomoButton from '../components/start-pause-pomo-button';
 import Activity from '../components/activity';
 import ActivityList from '../components/activity-list';
 import ActivityListContainer from '../containers/activity-list-container';
+import AddActivityForm from '../components/add-activity-form';
 
 
 const should = chai.should();
@@ -47,6 +48,10 @@ describe('Simple smoke tests', () => {
   it('Activity List Container component renders without crashing', () => {
     const container = document.createElement('div');
     ReactDOM.render(<ActivityListContainer />, container);
+  });
+  it('Add activity form component renders without crashing', () => {
+    const form = document.createElement('div');
+    ReactDOM.render(<AddActivityForm />, form);
   });
 });
 
