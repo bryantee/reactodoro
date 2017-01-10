@@ -7,7 +7,7 @@ export default function ChangeTimeForm(props) {
     <form className="">
       <div className="form-group">
         <label>Number of minutes for pomodoro</label>
-        <input type="number" placeholder={25} onChange={props.onChange} />
+        <input type="number" placeholder={25} onChange={props.onChange} value={props.value / 60} />
       </div>
     </form>
   );
