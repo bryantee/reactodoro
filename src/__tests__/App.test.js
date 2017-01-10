@@ -12,7 +12,7 @@ describe('Simple smoke tests', () => {
     ReactDOM.render(<App />, div);
   });
   it('Pomo container renders without crashing', () => {
-    const pomo = document.createElement('pomo');
+    const pomo = document.createElement('div');
     ReactDOM.render(<PomoProgressBar />, pomo);
   });
   it('Pomo progress bar component renders without crashing', () => {
@@ -22,11 +22,11 @@ describe('Simple smoke tests', () => {
     ReactDOM.render(<CircularProgress totalSeconds={totalSeconds} percentage={percentage} />, circularProgress);
   });
   it('ChangeTimeForm component renders without crashing', () => {
-    const form = document.createElement('form');
+    const form = document.createElement('div');
     ReactDOM.render(<ChangeTimeForm onChange={() => {1+1}} />, form);
   });
   it('Start  / Pause component renders without crashing', () => {
-    const button = document.createElement('button');
+    const button = document.createElement('div');
     ReactDOM.render(<StartPausePomoButton />, button);
   });
 });
