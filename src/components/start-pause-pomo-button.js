@@ -1,6 +1,4 @@
-import React, {
-  PropTypes,
-} from 'react';
+import React from 'react';
 
 export default function StartPausePomoButton(props) {
   const text = props.isRunning ? 'Pause' : 'Start';

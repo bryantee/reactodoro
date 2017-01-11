@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Activity from './activity';
 import AddActivityForm from './add-activity-form';
 

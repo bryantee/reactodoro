@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import ActivityList from '../components/activity-list';
 
 class ActivityListContainer extends React.Component {
@@ -17,8 +17,7 @@ class ActivityListContainer extends React.Component {
   }
 
   selectActivity(event) {
-    console.log('Item selected', event.target.id);
-    const id = parseInt(event.target.id);
+    const id = parseInt(event.target.id, 10);
     this.setState({
       selected: id
     });
@@ -26,7 +25,6 @@ class ActivityListContainer extends React.Component {
 
   handleActivitySubmit(event) {
     event.preventDefault();
-    console.log(`Submit ${this.state.addActivityText}`);
     const newArr = this.state.activities.concat(this.state.addActivityText);
     this.setState({
       activities: newArr,

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import CircularProgress from '../components/circular-progress';
 import ChangeTimeForm from '../components/change-time-form';
 import StartPausePomoButton from '../components/start-pause-pomo-button';

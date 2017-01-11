@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 const Activity = (props) => {
   const className = props.isSelected ? 'selected' : null;
