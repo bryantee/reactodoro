@@ -61,7 +61,7 @@ class PomoProgressBar extends React.Component {
     return (
       <div className="pomodoro-progress-bar">
         <CircularProgress percentage={this.state.percentage} totalSeconds={this.state.totalSeconds}/>
-        <ChangeTimeForm onChange={this.setPomoMinutes}/>
+        <ChangeTimeForm onChange={this.setPomoMinutes} value={this.state.totalSeconds}/>
         <StartPausePomoButton className="start-pomo-btn" isRunning={this.state.isRunning} pause={this.pausePomo} start={this.startPomo} />
       </div>
     )
