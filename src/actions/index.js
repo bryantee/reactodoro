@@ -36,12 +36,16 @@ export const selectActivity = () => {
 
 export const START_POMO = 'START_POMO';
 export const startPomo = () => {
-
+  return {
+    type: START_POMO,
+  }
 }
 
 export const PAUSE_POMO = 'PAUSE_POMO';
 export const pausePomo = () => {
-
+  return {
+    type: PAUSE_POMO
+  }
 }
 
 export const SET_POMO_SECONDS = 'SET_POMO_SECONDS';
@@ -50,5 +54,18 @@ export const setPomoSeconds = (totalSeconds) => {
     type: SET_POMO_SECONDS,
     totalSeconds
   }
+}
 
+export const INCREMENT_SECOND = 'INCREMENT_SECOND';
+export const incrementSecond = () => {
+  return {
+    type: INCREMENT_SECOND
+  }
+}
+
+export const RUN_POMO = 'RUN_POMO';
+export const runPomo = () => {
+  return {
+    type: RUN_POMO
+  }
 }

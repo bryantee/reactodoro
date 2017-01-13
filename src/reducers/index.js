@@ -5,6 +5,8 @@ export const initialState = {
   isRunning: false,
   totalSeconds: 1500,
   percentage: 0,
+  isComplete: false,
+  currentSeconds: 0,
   activities: [
     {
       name: 'Coding',
@@ -31,8 +33,21 @@ export const pomoReducer = (state=initialState, action) => {
       const after = state.activities.slice(index + 1);
       const newActivities = [...before, incrementedActivity, ...after];
       return {...state, activities: newActivities};
+
     case actions.SET_POMO_SECONDS:
       return {...state, totalSeconds: parseInt(action.totalSeconds, 10)}
+
+    case actions.INCREMENT_SECOND:
+      console.log('state:', state);
+      const newSeconds = state.currentSeconds + 1;
+      const newPercentage = (state.currentSeconds / state.totalSeconds) * 100;
+      return {...state, currentSeconds: newSeconds, percentage: newPercentage}
+
+    case actions.RUN_POMO:
+      return {...state, isRunning: true}
+
+    case actions.PAUSE_POMO:
+      return {...state, isRunning: false}
   }
   return state;
 }

@@ -27,9 +27,11 @@ export class PomoProgressBar extends React.Component {
   startPomo() {
 
     // set correct state each time startPomo is called
-    this.setState({
-      isRunning: true
-    });
+    this.props.dispatch(actions.runPomo());
+    // TODO: Remove depricated code below
+    // this.setState({
+    //   isRunning: true
+    // });
 
     // start setInterval for timer and return ID
     // so that it can be cleared at anytime
@@ -41,21 +43,24 @@ export class PomoProgressBar extends React.Component {
       // check if pomo is complete, return if it is
       if (this.props.currentSeconds === this.props.totalSeconds + 1) {
         this.props.dispatch(actions.completePomo('Coding'));
-        this.setState({ complete: true, isRunning: false });
+        // TODO: Delete the line below, depricated
+        // this.setState({ complete: true, isRunning: false });
         clearInterval(intervalId);
         return;
       }
       // set the state for percentage during each loop through
-      this.setState({
-        currentSeconds: (this.state.currentSeconds + 1),
-        percentage: ((this.state.currentSeconds / this.state.totalSeconds) * 100)
-      });
+      this.props.dispatch(actions.incrementSecond());
+      // TODO: Get rid of old code below
+      // this.setState({
+      //   currentSeconds: (this.state.currentSeconds + 1),
+      //   percentage: ((this.state.currentSeconds / this.state.totalSeconds) * 100)
+      // });
     }, 1000);
   }
 
   pausePomo() {
     console.log('Pause function called');
-    this.setState({ isRunning: false });
+    this.props.dispatch(actions.pausePomo());
   }
 
   setPomoMinutes(event) {
@@ -78,7 +83,8 @@ const mapStateToProps = (state, props) => ({
   totalSeconds: state.totalSeconds,
   percentage: state.percentage,
   currentSeconds: state.currentSeconds,
-  activities: state.activities
+  activities: state.activities,
+  isComplete: state.isComplete
 });
 
 export default connect(mapStateToProps)(PomoProgressBar);
