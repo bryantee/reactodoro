@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import chai from 'chai';
 import TestUtils from 'react-addons-test-utils';
 import App from '../App';
+import { shallow } from 'enzyme';
 import { PomoProgressBar } from '../containers/pomo-progress-bar';
 import CircularProgress from '../components/circular-progress';
 import ChangeTimeForm from '../components/change-time-form';
@@ -15,19 +16,15 @@ import AddActivityForm from '../components/add-activity-form';
 
 const should = chai.should();
 
-describe('Simple smoke tests', () => {
-  it('App renders without crashing'
-    // , () => {
-    // const div = document.createElement('div');
-    // ReactDOM.render(<App />, div);}
-  );
+describe('Shallow smoke tests', () => {
+  it('App renders without crashing', () => {
+    shallow(<App />);
+  });
   it('Pomo container renders without crashing', () => {
-    const pomo = document.createElement('div');
-    ReactDOM.render(<PomoProgressBar />, pomo);
+    shallow(<PomoProgressBar />);
   });
   it('Circular progress bar component renders without crashing', () => {
-    const circularProgress = document.createElement('div');
-    ReactDOM.render(<CircularProgress percentage={50} />, circularProgress);
+    shallow(<CircularProgress percentage={50} />);
   });
   it('ChangeTimeForm component renders without crashing', () => {
     const form = document.createElement('div');
@@ -47,8 +44,7 @@ describe('Simple smoke tests', () => {
     ReactDOM.render(<ActivityList list={list} />, activityList);
   });
   it('Activity List Container component renders without crashing', () => {
-    const container = document.createElement('div');
-    ReactDOM.render(<ActivityListContainer />, container);
+    shallow(<ActivityListContainer />);
   });
   it('Add activity form component renders without crashing', () => {
     const form = document.createElement('div');
@@ -56,7 +52,7 @@ describe('Simple smoke tests', () => {
   });
 });
 
-describe('Shallow Component Tests', ()=> {
+describe('Additional Tests', ()=> {
   it('Circular progress bar component renders with props', ()=> {
     const totalSeconds = 120;
     const percentage = 50;
@@ -68,4 +64,8 @@ describe('Shallow Component Tests', ()=> {
     result.props.percentage.should.equal(50);
   });
   it('Start button renders with proper text');
+});
+
+describe('Action Tests', () => {
+
 });
