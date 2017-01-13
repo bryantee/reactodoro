@@ -8,7 +8,6 @@ export const initialState = {
   isComplete: false,
   currentSeconds: 0,
   selectedActivity: 0,
-  addActivityText: '',
   activities: [
     {
       name: 'Coding',
@@ -57,6 +56,11 @@ export const pomoReducer = (state=initialState, action) => {
 
     case actions.SELECT_ACTIVITY:
       return {...state, selectedActivity: action.index}
+
+    case actions.ADD_ACTIVITY:
+    const newActivity = { name: action.activity, completedSessions: 0};
+    const addedActivities = state.activities.concat(newActivity);
+      return {...state, activities: addedActivities}
   }
   return state;
 }

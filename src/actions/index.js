@@ -20,8 +20,11 @@ export const getActivityDETAILS = () => {
 }
 
 export const ADD_ACTIVITY = 'ADD_ACTIVITY';
-export const addActivity = () => {
-
+export const addActivity = (activity) => {
+  return {
+    type: ADD_ACTIVITY,
+    activity
+  }
 }
 
 export const REMOVE_ACTIVITY = 'REMOVE_ACTIVITY';

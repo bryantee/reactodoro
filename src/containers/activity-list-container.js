@@ -9,11 +9,9 @@ export class ActivityListContainer extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   activities: ['Testing', 'Reading', 'Drinking Water'],
-    //   selected: 0,
-    //   addActivityText: ''
-    // };
+    this.state = {
+      addActivityText: ''
+    };
 
     this.selectActivity = this.selectActivity.bind(this);
     this.handleActivitySubmit = this.handleActivitySubmit.bind(this);
@@ -30,17 +28,16 @@ export class ActivityListContainer extends React.Component {
 
   handleActivitySubmit(event) {
     event.preventDefault();
-    const newArr = this.state.activities.concat(this.state.addActivityText);
-    // this.setState({
-    //   activities: newArr,
-    //   addActivityText: ''
-    // });
+    this.props.dispatch(actions.addActivity(this.state.addActivityText));
+    this.setState({
+      addActivityText: ''
+    });
   }
 
   handleActivityTextChange(event) {
-    // this.setState({
-    //   addActivityText: event.target.value
-    // });
+    this.setState({
+      addActivityText: event.target.value
+    });
   }
 
   render () {
@@ -51,7 +48,7 @@ export class ActivityListContainer extends React.Component {
         list={this.props.activities}
         handleSubmit={this.handleActivitySubmit}
         handleTextChange={this.handleActivityTextChange}
-        addActivityText={this.props.addActivityText}
+        addActivityText={this.state.addActivityText}
       />
     );
   }
@@ -59,7 +56,6 @@ export class ActivityListContainer extends React.Component {
 
 const mapStateToProps = (state, props) => ({
   selectedActivity: state.selectedActivity,
-  addActivityText: state.addActivityText,
   activities: state.activities
 });
 
