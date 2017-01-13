@@ -1,19 +1,23 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import * as actions from '../actions/index';
+
+// components
 import CircularProgress from '../components/circular-progress';
 import ChangeTimeForm from '../components/change-time-form';
 import StartPausePomoButton from '../components/start-pause-pomo-button';
 
-class PomoProgressBar extends React.Component {
+export class PomoProgressBar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      currentSeconds: 0,
-      totalSeconds: null,
-      percentage: 0,
-      complete: false,
-      isRunning: false
-    }
+    // this.state = {
+    //   currentSeconds: 0,
+    //   totalSeconds: null,
+    //   percentage: 0,
+    //   complete: false,
+    //   isRunning: false
+    // }
 
     this.startPomo = this.startPomo.bind(this);
     this.pausePomo = this.pausePomo.bind(this);
@@ -30,12 +34,13 @@ class PomoProgressBar extends React.Component {
     // start setInterval for timer and return ID
     // so that it can be cleared at anytime
     let intervalId = setInterval( () => {
-      if (!this.state.isRunning) {
+      if (!this.props.isRunning) {
         clearInterval(intervalId);
         return;
       }
       // check if pomo is complete, return if it is
-      if (this.state.currentSeconds === this.state.totalSeconds + 1) {
+      if (this.props.currentSeconds === this.props.totalSeconds + 1) {
+        this.props.dispatch(actions.completePomo('Coding'));
         this.setState({ complete: true, isRunning: false });
         clearInterval(intervalId);
         return;
@@ -54,18 +59,26 @@ class PomoProgressBar extends React.Component {
   }
 
   setPomoMinutes(event) {
-    this.setState({ totalSeconds: (event.target.value * 60)});
+    this.props.dispatch(actions.setPomoSeconds(event.target.value * 60));
   }
 
   render () {
     return (
       <div className="pomodoro-progress-bar">
-        <CircularProgress percentage={this.state.percentage} totalSeconds={this.state.totalSeconds}/>
-        <ChangeTimeForm onChange={this.setPomoMinutes} value={this.state.totalSeconds}/>
-        <StartPausePomoButton className="start-pomo-btn" isRunning={this.state.isRunning} pause={this.pausePomo} start={this.startPomo} />
+        <CircularProgress percentage={this.props.percentage} totalSeconds={this.props.totalSeconds}/>
+        <ChangeTimeForm onChange={this.setPomoMinutes} value={this.props.totalSeconds}/>
+        <StartPausePomoButton className="start-pomo-btn" isRunning={this.props.isRunning} pause={this.pausePomo} start={this.startPomo} />
       </div>
     )
   }
 }
 
-export default PomoProgressBar;
+const mapStateToProps = (state, props) => ({
+  isRunning: state.isRunning,
+  totalSeconds: state.totalSeconds,
+  percentage: state.percentage,
+  currentSeconds: state.currentSeconds,
+  activities: state.activities
+});
+
+export default connect(mapStateToProps)(PomoProgressBar);
