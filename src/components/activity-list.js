@@ -4,7 +4,7 @@ import AddActivityForm from './add-activity-form';
 
 const ActivityList = (props) => {
   const activityList = props.list.map((activity, index) => {
-    return <Activity isSelected={ index === props.selected ? true : false} name={activity} key={index} id={index} onClick={props.handler} />;
+    return <Activity isSelected={ index === props.selected ? true : false} name={activity.name} key={index} id={index} onClick={props.handler} />;
   });
   return (
     <div>

@@ -30,8 +30,11 @@ export const removeActivity = () => {
 }
 
 export const SELECT_ACTIVITY = 'SELECT_ACTIVITY';
-export const selectActivity = () => {
-
+export const selectActivity = (index) => {
+  return {
+    type: SELECT_ACTIVITY,
+    index
+  }
 }
 
 export const START_POMO = 'START_POMO';

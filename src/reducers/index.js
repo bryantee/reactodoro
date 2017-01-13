@@ -7,10 +7,16 @@ export const initialState = {
   percentage: 0,
   isComplete: false,
   currentSeconds: 0,
+  selectedActivity: 0,
+  addActivityText: '',
   activities: [
     {
       name: 'Coding',
       completedSessions: 0
+    },
+    {
+      name: 'Writing blog posts',
+      completedSessions: 1
     }
   ]
 };
@@ -21,7 +27,7 @@ export const pomoReducer = (state=initialState, action) => {
       // Look for activity name
       // If exists, increment completedSessions++ and return state
       const index = state.activities.findIndex(activity => {
-        console.log(action.payload.activity);
+        console.log(action.payload.activity, 'complete');
         return activity.name === action.payload.activity;
       });
 
@@ -48,6 +54,9 @@ export const pomoReducer = (state=initialState, action) => {
 
     case actions.PAUSE_POMO:
       return {...state, isRunning: false}
+
+    case actions.SELECT_ACTIVITY:
+      return {...state, selectedActivity: action.index}
   }
   return state;
 }

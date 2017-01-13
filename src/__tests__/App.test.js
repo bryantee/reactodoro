@@ -9,7 +9,7 @@ import ChangeTimeForm from '../components/change-time-form';
 import StartPausePomoButton from '../components/start-pause-pomo-button';
 import Activity from '../components/activity';
 import ActivityList from '../components/activity-list';
-import ActivityListContainer from '../containers/activity-list-container';
+import { ActivityListContainer } from '../containers/activity-list-container';
 import AddActivityForm from '../components/add-activity-form';
 
 
