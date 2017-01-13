@@ -21,20 +21,19 @@ export class ActivityListContainer extends React.Component {
   selectActivity(event) {
     const id = parseInt(event.target.id, 10);
     this.props.dispatch(actions.selectActivity(id));
-    // this.setState({
-    //   selected: id
-    // });
   }
 
   handleActivitySubmit(event) {
     event.preventDefault();
     this.props.dispatch(actions.addActivity(this.state.addActivityText));
+    // manage localstate of input through component
     this.setState({
       addActivityText: ''
     });
   }
 
   handleActivityTextChange(event) {
+    // Again, managing state in component here
     this.setState({
       addActivityText: event.target.value
     });

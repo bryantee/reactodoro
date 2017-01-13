@@ -3,9 +3,7 @@ export const COMPLETE_POMO = 'COMPLETE_POMO';
 export const completePomo = activity => {
   return {
     type: COMPLETE_POMO,
-    payload: {
-      activity
-    }
+    activity
   };
 };
 

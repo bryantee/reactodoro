@@ -11,14 +11,6 @@ export class PomoProgressBar extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   currentSeconds: 0,
-    //   totalSeconds: null,
-    //   percentage: 0,
-    //   complete: false,
-    //   isRunning: false
-    // }
-
     this.startPomo = this.startPomo.bind(this);
     this.pausePomo = this.pausePomo.bind(this);
     this.setPomoMinutes = this.setPomoMinutes.bind(this);
@@ -28,10 +20,6 @@ export class PomoProgressBar extends React.Component {
 
     // set correct state each time startPomo is called
     this.props.dispatch(actions.runPomo());
-    // TODO: Remove depricated code below
-    // this.setState({
-    //   isRunning: true
-    // });
 
     // start setInterval for timer and return ID
     // so that it can be cleared at anytime
@@ -43,18 +31,11 @@ export class PomoProgressBar extends React.Component {
       // check if pomo is complete, return if it is
       if (this.props.currentSeconds === this.props.totalSeconds + 1) {
         this.props.dispatch(actions.completePomo('Coding'));
-        // TODO: Delete the line below, depricated
-        // this.setState({ complete: true, isRunning: false });
         clearInterval(intervalId);
         return;
       }
       // set the state for percentage during each loop through
       this.props.dispatch(actions.incrementSecond());
-      // TODO: Get rid of old code below
-      // this.setState({
-      //   currentSeconds: (this.state.currentSeconds + 1),
-      //   percentage: ((this.state.currentSeconds / this.state.totalSeconds) * 100)
-      // });
     }, 1000);
   }
 
