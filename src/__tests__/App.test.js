@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import chai from 'chai';
+import chai, { expect } from 'chai';
 import TestUtils from 'react-addons-test-utils';
 import App from '../App';
-import { shallow } from 'enzyme';
+import { shallow, render } from 'enzyme';
 import { PomoProgressBar } from '../containers/pomo-progress-bar';
 import CircularProgress from '../components/circular-progress';
 import ChangeTimeForm from '../components/change-time-form';
@@ -12,13 +12,18 @@ import Activity from '../components/activity';
 import ActivityList from '../components/activity-list';
 import { ActivityListContainer } from '../containers/activity-list-container';
 import AddActivityForm from '../components/add-activity-form';
+import CircularProgressbar from '../components/circular-progress';
 
+//
+import store from '../store';
+import * as actions from '../actions/index';
 
 const should = chai.should();
 
 describe('Shallow smoke tests', () => {
   it('App renders without crashing', () => {
-    shallow(<App />);
+    const wrapper = shallow(<App />);
+    expect(wrapper.name()).to.equal('div');
   });
   it('Pomo container renders without crashing', () => {
     shallow(<PomoProgressBar />);
@@ -68,4 +73,11 @@ describe('Additional Tests', ()=> {
 
 describe('Action Tests', () => {
 
+});
+
+describe('Reducer Tests', () => {
+  it('ADD_ACTIVITY reducer', () => {
+    store.dispatch(actions.addActivity('test activity'));
+    store.getState().activities.length.should.equal(3);
+  });
 });
