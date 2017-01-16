@@ -1,5 +1,5 @@
 import * as actions from '../actions/index';
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 
 export const initialState = {
   isRunning: false,
@@ -60,6 +60,7 @@ export const pomoReducer = (state=initialState, action) => {
     const newActivity = { name: action.activity, completedSessions: 0};
     const addedActivities = state.activities.concat(newActivity);
       return {...state, activities: addedActivities}
-  }
-  return state;
+    default:
+      return state;
+    }
 }
