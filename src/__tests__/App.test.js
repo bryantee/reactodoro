@@ -20,7 +20,7 @@ import * as actions from '../actions/index';
 
 const should = chai.should();
 
-describe('Shallow smoke tests', () => {
+describe('Smoke tests', () => {
   it('App renders without crashing', () => {
     const wrapper = shallow(<App />);
     expect(wrapper.name()).to.equal('div');
@@ -56,8 +56,7 @@ describe('Shallow smoke tests', () => {
     ReactDOM.render(<AddActivityForm />, form);
   });
 });
-
-describe('Components', ()=> {
+describe('Shallow Components', ()=> {
   describe('Circular progress bar', ()=> {
     it('renders with props', () => {
       const totalSeconds = 120;
@@ -169,24 +168,15 @@ describe('Components', ()=> {
     });
   });
 });
-
-describe('Action Tests', () => {
-
-});
-
-describe('Reducer Tests', () => {
-  it('ADD_ACTIVITY reducer', () => {
+describe('Reducers (by action type)', () => {
+  it('ADD_ACTIVITY', () => {
     store.dispatch(actions.addActivity('test activity'));
     store.getState().activities.length.should.equal(3);
   });
-  it('SELECT_ACTIVITY reducer', () => {
+  it('SELECT_ACTIVITY', () => {
     store.dispatch(actions.selectActivity(1));
     store.getState().selectedActivity.should.equal(1);
   });
-  it('START_POMO');
-  it('RUN_POMO');
-  it('PAUSE_POMO');
-  it('COMPLETE_POMO');
   it('RUN_POMO', () => {
     store.dispatch(actions.runPomo());
     store.getState().isRunning.should.equal(true);
@@ -214,8 +204,16 @@ describe('Reducer Tests', () => {
     getActivityInfo(testActivity);
     currentStateActivity.completedSessions.should.equal(1);
   });
-  it('INCREMENT_SECOND');
-  it('SET_POMO_SECONDS');
+  it('INCREMENT_SECOND', () => {
+    const startingSeconds = store.getState().currentSeconds;
+    store.dispatch(actions.incrementSecond());
+    store.getState().currentSeconds.should.equal(startingSeconds + 1)
+  });
+  it('SET_POMO_SECONDS', () => {
+    const seconds = 100;
+    store.dispatch(actions.setPomoSeconds(seconds));
+    store.getState().totalSeconds.should.equal(seconds);
+  });
   it('GET_ACTIVITY_DETAILS');
   it('GET_ARTICLES');
 });
