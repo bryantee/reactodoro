@@ -1,13 +1,15 @@
-import React, { PropTypes } from 'react'
+import React from 'react';
+import {connect} from 'react-redux';
+import * as actions from '../actions/index';
+
+//components
 import ActivityList from '../components/activity-list';
 
-class ActivityListContainer extends React.Component {
+export class ActivityListContainer extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activities: ['Testing', 'Reading', 'Drinking Water'],
-      selected: 0,
       addActivityText: ''
     };
 
@@ -17,24 +19,21 @@ class ActivityListContainer extends React.Component {
   }
 
   selectActivity(event) {
-    console.log('Item selected', event.target.id);
-    const id = parseInt(event.target.id);
-    this.setState({
-      selected: id
-    });
+    const id = parseInt(event.target.id, 10);
+    this.props.dispatch(actions.selectActivity(id));
   }
 
   handleActivitySubmit(event) {
     event.preventDefault();
-    console.log(`Submit ${this.state.addActivityText}`);
-    const newArr = this.state.activities.concat(this.state.addActivityText);
+    this.props.dispatch(actions.addActivity(this.state.addActivityText));
+    // manage localstate of input through component
     this.setState({
-      activities: newArr,
       addActivityText: ''
     });
   }
 
   handleActivityTextChange(event) {
+    // Again, managing state in component here
     this.setState({
       addActivityText: event.target.value
     });
@@ -43,9 +42,9 @@ class ActivityListContainer extends React.Component {
   render () {
     return (
       <ActivityList
-        selected={this.state.selected}
+        selected={this.props.selectedActivity}
         handler={this.selectActivity}
-        list={this.state.activities}
+        list={this.props.activities}
         handleSubmit={this.handleActivitySubmit}
         handleTextChange={this.handleActivityTextChange}
         addActivityText={this.state.addActivityText}
@@ -54,4 +53,9 @@ class ActivityListContainer extends React.Component {
   }
 }
 
-export default ActivityListContainer;
+const mapStateToProps = (state, props) => ({
+  selectedActivity: state.selectedActivity,
+  activities: state.activities
+});
+
+export default connect(mapStateToProps)(ActivityListContainer);
