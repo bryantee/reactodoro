@@ -72,22 +72,40 @@ describe('Components', ()=> {
   });
   describe('Start button', () => {
     it('renders button w/ proper text when running', () => {
+      const props = {};
+      props.isRunning = true;
+
       const renderer = TestUtils.createRenderer();
-      renderer.render(<StartPausePomoButton isRunning={true} clickHandler={() => {}} />);
+      renderer.render(<StartPausePomoButton {...props} />);
       const result = renderer.getRenderOutput();
 
       result.type.should.equal('button');
       result.props.children.should.equal('Pause');
     });
     it('renders props text when not running', () => {
+      const props = {};
+      props.isRunning = false;
+
       const renderer = TestUtils.createRenderer();
-      renderer.render(<StartPausePomoButton isRunning={false} clickHandler={() => {}} />);
+      renderer.render(<StartPausePomoButton {...props} />);
       const result = renderer.getRenderOutput();
 
       result.type.should.equal('button');
       result.props.children.should.equal('Start');
     });
-    it('calls handler function on click');
+    it('calls handler function on click', () => {
+      const props = {
+        isRunning: true,
+        pause: () => {},
+        start: () => {}
+      };
+
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<StartPausePomoButton {...props} />);
+      const result = renderer.getRenderOutput();
+
+      result.props.onClick.should.equal(props.pause);
+    });
   });
   describe('Pomo Progress Bar', ()=> {
     it('renders all child components', ()=> {
@@ -100,7 +118,22 @@ describe('Components', ()=> {
       result.props.children.length.should.equal(3);
     });
   });
-  // describe('Acitivty List');
+  describe('Acitivty List', () => {
+    const props = {};
+    props.list = [1, 2, 3];
+
+    it('Activity has a form and renders list of Activities', () => {
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<ActivityList {...props} />);
+      const result = renderer.getRenderOutput();
+
+      result.props.children.length.should.equal(2);
+      result.props.children[0].type.should.equal(AddActivityForm);
+      result.props.children[1].type.should.equal('ul');
+
+      result.props.children[1].props.children.length.should.equal(3);
+    });
+  });
   // describe('Acitivity');
   // describe('Add Activity Form');
   // describe('Change Time form');
