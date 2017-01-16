@@ -122,7 +122,7 @@ describe('Components', ()=> {
     const props = {};
     props.list = [1, 2, 3];
 
-    it('Activity has a form and renders list of Activities', () => {
+    it('renders AddActivityForm and renders list of Activities', () => {
       const renderer = TestUtils.createRenderer();
       renderer.render(<ActivityList {...props} />);
       const result = renderer.getRenderOutput();
@@ -134,10 +134,40 @@ describe('Components', ()=> {
       result.props.children[1].props.children.length.should.equal(3);
     });
   });
-  // describe('Acitivity');
-  // describe('Add Activity Form');
-  // describe('Change Time form');
-  // describe('Activity List Container');
+  describe('Acitivity', () => {
+    it('Renders a single li element', () => {
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<Activity />);
+
+      const result = renderer.getRenderOutput();
+      result.type.should.equal('li');
+    });
+  });
+  describe('Add Activity Form', () => {
+    it('renders form and children greater than 0', () => {
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<AddActivityForm />);
+      const result = renderer.getRenderOutput();
+      result.type.should.equal('form');
+      result.props.children.length.should.be.above(0);
+    });
+  });
+  describe('Change Time form', () => {
+    it('renders a form', () => {
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<ChangeTimeForm />);
+      const result = renderer.getRenderOutput();
+      result.type.should.equal('form');
+    });
+  });
+  describe('Activity List Container', () => {
+    it('render Activity List component', () => {
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<ActivityListContainer />);
+      const result = renderer.getRenderOutput();
+      result.type.should.equal(ActivityList);
+    });
+  });
 });
 
 describe('Action Tests', () => {
