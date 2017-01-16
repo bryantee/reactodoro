@@ -57,18 +57,54 @@ describe('Shallow smoke tests', () => {
   });
 });
 
-describe('Additional Tests', ()=> {
-  it('Circular progress bar component renders with props', ()=> {
-    const totalSeconds = 120;
-    const percentage = 50;
+describe('Components', ()=> {
+  describe('Circular progress bar', ()=> {
+    it('renders with props', () => {
+      const totalSeconds = 120;
+      const percentage = 50;
 
-    const renderer = TestUtils.createRenderer();
-    renderer.render(<CircularProgress totalSeconds={totalSeconds} percentage={percentage} />);
-    const result = renderer.getRenderOutput();
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<CircularProgress totalSeconds={totalSeconds} percentage={percentage} />);
+      const result = renderer.getRenderOutput();
 
-    result.props.percentage.should.equal(50);
+      result.props.percentage.should.equal(50);
+    });
   });
-  it('Start button renders with proper text');
+  describe('Start button', () => {
+    it('renders button w/ proper text when running', () => {
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<StartPausePomoButton isRunning={true} clickHandler={() => {}} />);
+      const result = renderer.getRenderOutput();
+
+      result.type.should.equal('button');
+      result.props.children.should.equal('Pause');
+    });
+    it('renders props text when not running', () => {
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<StartPausePomoButton isRunning={false} clickHandler={() => {}} />);
+      const result = renderer.getRenderOutput();
+
+      result.type.should.equal('button');
+      result.props.children.should.equal('Start');
+    });
+    it('calls handler function on click');
+  });
+  describe('Pomo Progress Bar', ()=> {
+    it('renders all child components', ()=> {
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<PomoProgressBar />);
+      const result = renderer.getRenderOutput();
+
+      result.type.should.equal('div');
+      result.props.className.should.equal('pomodoro-progress-bar');
+      result.props.children.length.should.equal(3);
+    });
+  });
+  // describe('Acitivty List');
+  // describe('Acitivity');
+  // describe('Add Activity Form');
+  // describe('Change Time form');
+  // describe('Activity List Container');
 });
 
 describe('Action Tests', () => {
@@ -80,4 +116,16 @@ describe('Reducer Tests', () => {
     store.dispatch(actions.addActivity('test activity'));
     store.getState().activities.length.should.equal(3);
   });
+  it('SELECT_ACTIVITY reducer', () => {
+    store.dispatch(actions.selectActivity(1));
+    store.getState().selectedActivity.should.equal(1);
+  });
+  it('START_POMO');
+  it('RUN_POMO');
+  it('PAUSE_POMO');
+  it('COMPLETE_POMO');
+  it('INCREMENT_SECOND');
+  it('SET_POMO_SECONDS');
+  it('GET_ACTIVITY_DETAILS');
+  it('GET_ARTICLES');
 });
