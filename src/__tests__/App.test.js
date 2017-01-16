@@ -187,6 +187,33 @@ describe('Reducer Tests', () => {
   it('RUN_POMO');
   it('PAUSE_POMO');
   it('COMPLETE_POMO');
+  it('RUN_POMO', () => {
+    store.dispatch(actions.runPomo());
+    store.getState().isRunning.should.equal(true);
+  });
+  it('PAUSE_POMO', () => {
+    store.dispatch(actions.pausePomo());
+    store.getState().isRunning.should.equal(false);
+  });
+  it('COMPLETE_POMO', () => {
+    const testActivity = 'Coding';
+    let currentStateActivity;
+
+    const getActivityInfo = (activity) => {
+      store.getState().activities.forEach((a) => {
+        if (a.name === testActivity) {
+          currentStateActivity = a;
+        }
+      });
+    };
+
+    getActivityInfo(testActivity);
+    currentStateActivity.completedSessions.should.equal(0);
+
+    store.dispatch(actions.completePomo(testActivity));
+    getActivityInfo(testActivity);
+    currentStateActivity.completedSessions.should.equal(1);
+  });
   it('INCREMENT_SECOND');
   it('SET_POMO_SECONDS');
   it('GET_ACTIVITY_DETAILS');

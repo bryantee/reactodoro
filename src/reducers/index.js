@@ -33,7 +33,7 @@ export const pomoReducer = (state=initialState, action) => {
       if (index === -1) throw new Error('Somehow can\'t find activity', action.activity);
 
       // build new state
-      const incrementedActivity = Object.assign({}, {name: action.activity}, {completedSessions: state.activities[index].completedSessions++});
+      const incrementedActivity = Object.assign({}, {name: action.activity}, {completedSessions: state.activities[index].completedSessions + 1});
       const before = state.activities.slice(0, index);
       const after = state.activities.slice(index + 1);
       const newActivities = [...before, incrementedActivity, ...after];
