@@ -15,6 +15,10 @@ import ActivityList from '../components/activity-list';
 import { ActivityListContainer } from '../containers/activity-list-container';
 import AddActivityForm from '../components/add-activity-form';
 import CircularProgressbar from '../components/circular-progress';
+import About from '../components/about';
+import ArticlesList from '../components/articles-list';
+import Article from '../components/article';
+import { NewsArticles } from '../containers/news-articles';
 
 //
 import store from '../store';
@@ -56,6 +60,30 @@ describe('Smoke tests', () => {
   it('Add activity form component renders without crashing', () => {
     const form = document.createElement('div');
     ReactDOM.render(<AddActivityForm />, form);
+  });
+  it('About component renders', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<About />, div);
+  });
+  it('Articles List component renders', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<ArticlesList />, div);
+  });
+  it('Article component renders', () => {
+    const props = {
+      title: 'title',
+      abstract: 'abstract',
+      short_url: 'short url',
+      url: 'url',
+      multimedia: 'multi'
+    };
+
+    const wrapper = shallow(<Article data={props} />);
+    expect(wrapper).to.exist;
+  });
+  it('News Articles container renders', () => {
+    const wrapper = shallow(<NewsArticles />);
+    expect(wrapper.name()).to.equal('div');
   });
 });
 describe('Shallow Components', ()=> {
