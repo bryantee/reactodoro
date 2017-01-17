@@ -4,6 +4,8 @@ import chai, { expect } from 'chai';
 import TestUtils from 'react-addons-test-utils';
 import App from '../App';
 import { shallow, render } from 'enzyme';
+
+// components
 import { PomoProgressBar } from '../containers/pomo-progress-bar';
 import CircularProgress from '../components/circular-progress';
 import ChangeTimeForm from '../components/change-time-form';

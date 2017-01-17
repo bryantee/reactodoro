@@ -8,13 +8,16 @@ import store from './store';
 import App from './App';
 import About from './components/about';
 import Pomo from './components/pomo';
+import NewsArticles from './containers/news-articles';
 import './index.css';
 
 const routes = (
   <Router history={hashHistory}>
     <Route path='/' component={App}>
+      <IndexRoute component={About} />
       <Route path='about' component={About} />
       <Route path='pomo' component={Pomo} />
+      <Route path='articles' component={NewsArticles} />
     </Route>
   </Router>
 )
