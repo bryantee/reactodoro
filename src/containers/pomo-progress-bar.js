@@ -6,6 +6,8 @@ import * as actions from '../actions/index';
 import CircularProgress from '../components/circular-progress';
 import ChangeTimeForm from '../components/change-time-form';
 import StartPausePomoButton from '../components/start-pause-pomo-button';
+import ResetPomoButton from '../components/reset-button';
+import BreakButton from '../components/break-button';
 
 export class PomoProgressBar extends React.Component {
   constructor(props) {
@@ -14,6 +16,7 @@ export class PomoProgressBar extends React.Component {
     this.startPomo = this.startPomo.bind(this);
     this.pausePomo = this.pausePomo.bind(this);
     this.setPomoMinutes = this.setPomoMinutes.bind(this);
+    this.resetPomo = this.resetPomo.bind(this);
   }
 
   startPomo() {
@@ -30,7 +33,7 @@ export class PomoProgressBar extends React.Component {
       }
       // check if pomo is complete, return if it is
       if (this.props.currentSeconds === this.props.totalSeconds + 1) {
-        this.props.dispatch(actions.completePomo('Coding'));
+        this.props.dispatch(actions.completePomo(this.props.activities[this.props.selectedActivity].name));
         clearInterval(intervalId);
         return;
       }
@@ -48,12 +51,24 @@ export class PomoProgressBar extends React.Component {
     this.props.dispatch(actions.setPomoSeconds(event.target.value * 60));
   }
 
+  resetPomo() {
+    console.log('resetPomo called from function');
+    this.props.dispatch(actions.resetPomo());
+  }
+
   render () {
+    let options = [];
+    if (this.props.isComplete) {
+      options.push(<BreakButton to="articles" key="1"/>);
+    }
+
     return (
       <div className="pomodoro-progress-bar">
         <CircularProgress percentage={this.props.percentage} totalSeconds={this.props.totalSeconds}/>
         <ChangeTimeForm onChange={this.setPomoMinutes} value={this.props.totalSeconds}/>
         <StartPausePomoButton className="start-pomo-btn" isRunning={this.props.isRunning} pause={this.pausePomo} start={this.startPomo} />
+        <ResetPomoButton reset={this.resetPomo} />
+        {options}
       </div>
     )
   }
@@ -65,7 +80,8 @@ const mapStateToProps = (state, props) => ({
   percentage: state.percentage,
   currentSeconds: state.currentSeconds,
   activities: state.activities,
-  isComplete: state.isComplete
+  isComplete: state.isComplete,
+  selectedActivity: state.selectedActivity
 });
 
 export default connect(mapStateToProps)(PomoProgressBar);

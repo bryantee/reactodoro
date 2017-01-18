@@ -1,4 +1,5 @@
 import * as actions from '../actions/index';
+import { handle } from 'redux-pack';
 // import { combineReducers } from 'redux';
 
 export const initialState = {
@@ -8,6 +9,7 @@ export const initialState = {
   isComplete: false,
   currentSeconds: 0,
   selectedActivity: 0,
+  articles: [],
   activities: [
     // Mock activities for testing
     {
@@ -37,7 +39,7 @@ export const pomoReducer = (state=initialState, action) => {
       const before = state.activities.slice(0, index);
       const after = state.activities.slice(index + 1);
       const newActivities = [...before, incrementedActivity, ...after];
-      return {...state, activities: newActivities};
+      return {...state, activities: newActivities, isRunning: false, isComplete: true};
 
     case actions.SET_POMO_SECONDS:
       return {...state, totalSeconds: parseInt(action.totalSeconds, 10)}
@@ -60,6 +62,26 @@ export const pomoReducer = (state=initialState, action) => {
     const newActivity = { name: action.activity, completedSessions: 0};
     const addedActivities = state.activities.concat(newActivity);
       return {...state, activities: addedActivities}
+
+    case actions.GET_ARTICLES:
+      console.log('get articles payload:', action.payload);
+      return handle(state, action, {
+        start: s => ({ ...s }),
+        finish: s => ({ ...s }),
+        failure: s => ({ ...s, error: action.payload }),
+        success: s => ({ ...s, articles: action.payload.results })
+      });
+
+      case actions.RESET_POMO:
+        console.log('RESET CALLED');
+        return {
+          ...state,
+          isRunning: false,
+          percentage: 0,
+          isComplete: false,
+          currentSeconds: 0,
+        }
+
     default:
       return state;
     }

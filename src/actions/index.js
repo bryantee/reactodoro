@@ -9,7 +9,10 @@ export const completePomo = activity => {
 
 export const GET_ARTICLES = 'GET_ARTICLES';
 export const getArticles = () => {
-
+  return {
+    type: GET_ARTICLES,
+    promise: fetch('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=5fded6fe162843dc870e0ac80c6d41d0').then( response => { return response.json()})
+  }
 }
 
 export const GET_ACTIVITY_DETAILS = 'GET_ACTIVITY_DETAILS';
@@ -71,5 +74,12 @@ export const RUN_POMO = 'RUN_POMO';
 export const runPomo = () => {
   return {
     type: RUN_POMO
+  }
+}
+
+export const RESET_POMO = 'RESET_POMO';
+export const resetPomo = () => {
+  return {
+    type: RESET_POMO
   }
 }

@@ -4,6 +4,8 @@ import chai, { expect } from 'chai';
 import TestUtils from 'react-addons-test-utils';
 import App from '../App';
 import { shallow, render } from 'enzyme';
+
+// components
 import { PomoProgressBar } from '../containers/pomo-progress-bar';
 import CircularProgress from '../components/circular-progress';
 import ChangeTimeForm from '../components/change-time-form';
@@ -13,6 +15,11 @@ import ActivityList from '../components/activity-list';
 import { ActivityListContainer } from '../containers/activity-list-container';
 import AddActivityForm from '../components/add-activity-form';
 import CircularProgressbar from '../components/circular-progress';
+import About from '../components/about';
+import ArticlesList from '../components/articles-list';
+import Article from '../components/article';
+import { NewsArticles } from '../containers/news-articles';
+import BreakButton from '../components/break-button';
 
 //
 import store from '../store';
@@ -54,6 +61,30 @@ describe('Smoke tests', () => {
   it('Add activity form component renders without crashing', () => {
     const form = document.createElement('div');
     ReactDOM.render(<AddActivityForm />, form);
+  });
+  it('About component renders', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<About />, div);
+  });
+  it('Articles List component renders', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<ArticlesList />, div);
+  });
+  it('Article component renders', () => {
+    const props = {
+      title: 'title',
+      abstract: 'abstract',
+      short_url: 'short url',
+      url: 'url',
+      multimedia: 'multi'
+    };
+
+    const wrapper = shallow(<Article data={props} />);
+    expect(wrapper).to.exist;
+  });
+  it('News Articles container renders', () => {
+    const wrapper = shallow(<NewsArticles />);
+    expect(wrapper.name()).to.equal('div');
   });
 });
 describe('Shallow Components', ()=> {
@@ -114,8 +145,9 @@ describe('Shallow Components', ()=> {
 
       result.type.should.equal('div');
       result.props.className.should.equal('pomodoro-progress-bar');
-      result.props.children.length.should.equal(3);
+      result.props.children.length.should.be.above(1);
     });
+    it('renders "take break" button when state is complete');
   });
   describe('Acitivty List', () => {
     const props = {};
@@ -216,4 +248,5 @@ describe('Reducers (by action type)', () => {
   });
   it('GET_ACTIVITY_DETAILS');
   it('GET_ARTICLES');
+  it('RESET_POMO');
 });
