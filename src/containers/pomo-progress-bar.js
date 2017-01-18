@@ -32,7 +32,7 @@ export class PomoProgressBar extends React.Component {
       }
       // check if pomo is complete, return if it is
       if (this.props.currentSeconds === this.props.totalSeconds + 1) {
-        this.props.dispatch(actions.completePomo('Coding'));
+        this.props.dispatch(actions.completePomo(this.props.activities[this.props.selectedActivity].name));
         clearInterval(intervalId);
         return;
       }
@@ -73,7 +73,8 @@ const mapStateToProps = (state, props) => ({
   percentage: state.percentage,
   currentSeconds: state.currentSeconds,
   activities: state.activities,
-  isComplete: state.isComplete
+  isComplete: state.isComplete,
+  selectedActivity: state.selectedActivity
 });
 
 export default connect(mapStateToProps)(PomoProgressBar);
