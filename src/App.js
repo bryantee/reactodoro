@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import Title from './components/title';
 
-class App extends Component {
+export class App extends Component {
   render() {
     return (
       <div className="App">
-        Hello World
+        <Title />
+        <div className="container">
+          {this.props.children}
+        </div>
       </div>
     );
   }
