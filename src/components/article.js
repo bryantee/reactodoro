@@ -1,13 +1,13 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 const Article = (props) => {
   return (
     <div>
-      <h1>{props.data.title}</h1>
+      <a href={props.data.url}>
+        <h1>{props.data.title}</h1>
+      </a>
       <p>{props.data.abstract}</p>
-      <img src={props.data.multimedia[0].url} />
-      <p>{props.data.url}</p>
-      <p>{props.data.short_url}</p>
+      <img alt="article" src={props.data.multimedia[0] ? props.data.multimedia[0].url : ''} />
     </div>
   )
 }
