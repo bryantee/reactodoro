@@ -2,7 +2,11 @@ import React from 'react';
 
 const Title = () => {
   return (
-    <h1>Reactodoro</h1>
+    <nav className="navbar navbar-default">
+      <div className="container">
+        <h1 className="navbar-brand">Reactodoro</h1>
+      </div>
+    </nav>
   )
 }
 
