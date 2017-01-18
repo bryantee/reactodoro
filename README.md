@@ -10,5 +10,5 @@ This app is currently in development. You should be able to play with the curren
 - [create-react-app](https://github.com/facebookincubator/create-react-app)
 - Enzyme / Chai / Jest
 - redux-thunk
-- React react
+- React Router
 - [react-circular-progressbar](https://www.npmjs.com/package/react-circular-progressbar)
