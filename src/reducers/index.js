@@ -77,7 +77,6 @@ export const pomoReducer = (state=initialState, action) => {
         return {
           ...state,
           isRunning: false,
-          totalSeconds: 1500,
           percentage: 0,
           isComplete: false,
           currentSeconds: 0,
