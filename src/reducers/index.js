@@ -39,7 +39,7 @@ export const pomoReducer = (state=initialState, action) => {
       const before = state.activities.slice(0, index);
       const after = state.activities.slice(index + 1);
       const newActivities = [...before, incrementedActivity, ...after];
-      return {...state, activities: newActivities, isRunning: false};
+      return {...state, activities: newActivities, isRunning: false, isComplete: true};
 
     case actions.SET_POMO_SECONDS:
       return {...state, totalSeconds: parseInt(action.totalSeconds, 10)}

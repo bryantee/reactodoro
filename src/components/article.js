@@ -7,7 +7,7 @@ const Article = (props) => {
         <h1>{props.data.title}</h1>
       </a>
       <p>{props.data.abstract}</p>
-      <img alt="article" src={props.data.multimedia[0] ? props.data.multimedia[0].url : ''} />
+      <img alt="article-thumbnail" src={props.data.multimedia[0] ? props.data.multimedia[0].url : ''} />
     </div>
   )
 }
