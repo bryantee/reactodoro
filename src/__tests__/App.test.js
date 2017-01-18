@@ -19,6 +19,7 @@ import About from '../components/about';
 import ArticlesList from '../components/articles-list';
 import Article from '../components/article';
 import { NewsArticles } from '../containers/news-articles';
+import BreakButton from '../components/break-button';
 
 //
 import store from '../store';
@@ -144,8 +145,9 @@ describe('Shallow Components', ()=> {
 
       result.type.should.equal('div');
       result.props.className.should.equal('pomodoro-progress-bar');
-      result.props.children.length.should.equal(3);
+      result.props.children.length.should.be.above(1);
     });
+    it('renders "take break" button when state is complete');
   });
   describe('Acitivty List', () => {
     const props = {};
@@ -246,4 +248,5 @@ describe('Reducers (by action type)', () => {
   });
   it('GET_ACTIVITY_DETAILS');
   it('GET_ARTICLES');
+  it('RESET_POMO');
 });
