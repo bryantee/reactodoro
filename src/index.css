@@ -5,8 +5,14 @@ body {
 }
 
 .pomodoro-progress-bar {
-  max-width: 35%;
+  max-width: 80%;
   margin: 0 auto;
+}
+
+@media (min-width: 650px) {
+  .pomodoro-progress-bar {
+    max-width: 35%;
+  }
 }
 
 .CircularProgressbar .CircularProgressbar-path {
