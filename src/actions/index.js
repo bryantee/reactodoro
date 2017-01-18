@@ -76,3 +76,10 @@ export const runPomo = () => {
     type: RUN_POMO
   }
 }
+
+export const RESET_POMO = 'RESET_POMO';
+export const resetPomo = () => {
+  return {
+    type: RESET_POMO
+  }
+}

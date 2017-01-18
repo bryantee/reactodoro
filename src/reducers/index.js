@@ -72,6 +72,17 @@ export const pomoReducer = (state=initialState, action) => {
         success: s => ({ ...s, articles: action.payload.results })
       });
 
+      case actions.RESET_POMO:
+        console.log('RESET CALLED');
+        return {
+          ...state,
+          isRunning: false,
+          totalSeconds: 1500,
+          percentage: 0,
+          isComplete: false,
+          currentSeconds: 0,
+        }
+
     default:
       return state;
     }
