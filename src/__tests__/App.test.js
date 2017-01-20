@@ -5,6 +5,8 @@ import TestUtils from 'react-addons-test-utils';
 import App from '../App';
 import { shallow, render } from 'enzyme';
 
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 // components
 import { PomoProgressBar } from '../containers/pomo-progress-bar';
 import CircularProgress from '../components/circular-progress';
@@ -20,6 +22,7 @@ import ArticlesList from '../components/articles-list';
 import Article from '../components/article';
 import { NewsArticles } from '../containers/news-articles';
 import BreakButton from '../components/break-button';
+import { RaisedButton } from 'material-ui';
 
 //
 import store from '../store';
@@ -30,7 +33,7 @@ const should = chai.should();
 describe('Smoke tests', () => {
   it('App renders without crashing', () => {
     const wrapper = shallow(<App />);
-    expect(wrapper.name()).to.equal('div');
+    expect(wrapper).to.have.lengthOf(1);
   });
   it('Pomo container renders without crashing', () => {
     shallow(<PomoProgressBar />);
@@ -39,12 +42,11 @@ describe('Smoke tests', () => {
     shallow(<CircularProgress percentage={50} />);
   });
   it('ChangeTimeForm component renders without crashing', () => {
-    const form = document.createElement('div');
-    ReactDOM.render(<ChangeTimeForm onChange={() => {1+1}} />, form);
+    shallow(<ChangeTimeForm onChange={() => {1+1}} />);
   });
   it('Start Button component renders without crashing', () => {
-    const button = document.createElement('div');
-    ReactDOM.render(<StartPausePomoButton />, button);
+    const wrapper = shallow(<StartPausePomoButton />);
+    expect(wrapper).to.have.lengthOf(1);
   });
   it('Activity component renders without crashing', () => {
     const activity = document.createElement('div');
@@ -56,7 +58,7 @@ describe('Smoke tests', () => {
     ReactDOM.render(<ActivityList list={list} />, activityList);
   });
   it('Activity List Container component renders without crashing', () => {
-    shallow(<ActivityListContainer />);
+    const wrapper = shallow(<ActivityListContainer />);
   });
   it('Add activity form component renders without crashing', () => {
     const form = document.createElement('div');
@@ -86,6 +88,10 @@ describe('Smoke tests', () => {
     const wrapper = shallow(<NewsArticles />);
     expect(wrapper.name()).to.equal('div');
   });
+  it('Break Button renders without crashing', () => {
+    const wrapper = shallow(<BreakButton />);
+    expect(wrapper).to.exist;
+  })
 });
 describe('Shallow Components', ()=> {
   describe('Circular progress bar', ()=> {
@@ -100,6 +106,10 @@ describe('Shallow Components', ()=> {
       result.props.percentage.should.equal(50);
     });
   });
+
+  // TODO: Refactor to actually test contents of button based on redux state
+  // Use beforeEach functions?
+
   describe('Start button', () => {
     it('renders button w/ proper text when running', () => {
       const props = {};
@@ -109,19 +119,19 @@ describe('Shallow Components', ()=> {
       renderer.render(<StartPausePomoButton {...props} />);
       const result = renderer.getRenderOutput();
 
-      result.type.should.equal('button');
-      result.props.children.should.equal('Pause');
+      result.type.should.equal(RaisedButton);
+      // result.props.children.should.equal('Pause');
     });
     it('renders props text when not running', () => {
       const props = {};
       props.isRunning = false;
 
-      const renderer = TestUtils.createRenderer();
+      const renderer = TestUtils.createRenderer(RaisedButton);
       renderer.render(<StartPausePomoButton {...props} />);
       const result = renderer.getRenderOutput();
 
-      result.type.should.equal('button');
-      result.props.children.should.equal('Start');
+      result.type.should.equal(RaisedButton);
+      // result.props.children.should.equal('Start');
     });
     it('calls handler function on click', () => {
       const props = {

@@ -47,8 +47,8 @@ export class PomoProgressBar extends React.Component {
     this.props.dispatch(actions.pausePomo());
   }
 
-  setPomoMinutes(event) {
-    this.props.dispatch(actions.setPomoSeconds(event.target.value * 60));
+  setPomoMinutes(event, value) {
+    this.props.dispatch(actions.setPomoSeconds(value * 60));
   }
 
   resetPomo() {

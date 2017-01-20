@@ -1,13 +1,17 @@
 import React from 'react';
+import { Slider } from 'material-ui';
 
 
 export default function ChangeTimeForm(props) {
   return (
     <form className="">
-      <div className="form-group">
-        <label>Number of minutes for pomodoro</label>
-        <input type="number" placeholder={25} onChange={props.onChange} value={props.value / 60} />
-      </div>
+      <Slider
+        min={0}
+        max={30}
+        defaultValue={25}
+        value={props.value / 60}
+        onChange={props.onChange}
+      />
     </form>
   );
 }
