@@ -23,6 +23,7 @@ import Article from '../components/article';
 import { NewsArticles } from '../containers/news-articles';
 import BreakButton from '../components/break-button';
 import { RaisedButton } from 'material-ui';
+import { ListItem, List } from 'material-ui';
 
 //
 import store from '../store';
@@ -170,18 +171,18 @@ describe('Shallow Components', ()=> {
 
       result.props.children.length.should.equal(2);
       result.props.children[0].type.should.equal(AddActivityForm);
-      result.props.children[1].type.should.equal('ul');
+      result.props.children[1].type.should.equal(List);
 
       result.props.children[1].props.children.length.should.equal(3);
     });
   });
   describe('Acitivity', () => {
-    it('Renders a single li element', () => {
+    it('Renders a single ListItem component', () => {
       const renderer = TestUtils.createRenderer();
-      renderer.render(<Activity />);
+      renderer.render(<Activity onClick={() => {}}/>);
 
       const result = renderer.getRenderOutput();
-      result.type.should.equal('li');
+      result.type.should.equal(ListItem);
     });
   });
   describe('Add Activity Form', () => {
