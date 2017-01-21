@@ -8,7 +8,7 @@ const Article = (props) => {
   return (
     <Card className="panel article">
       <CardMedia>
-        {image && <img src={image} /> }
+        {image && <img alt="article thumb" src={image} /> }
       </CardMedia>
       <CardTitle
         title={props.data.title}

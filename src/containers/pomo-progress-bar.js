@@ -59,12 +59,12 @@ export class PomoProgressBar extends React.Component {
 
   render () {
     let buttons = [
-      <StartPausePomoButton className="btn" isRunning={this.props.isRunning} pause={this.pausePomo} start={this.startPomo} />,
-      <ResetPomoButton className='btn' reset={this.resetPomo} />
+      <StartPausePomoButton key="1" className="btn" isRunning={this.props.isRunning} pause={this.pausePomo} start={this.startPomo} />,
+      <ResetPomoButton key="2" className='btn' reset={this.resetPomo} />
     ];
 
     if (this.props.isComplete) {
-      buttons.push(<BreakButton className="btn" to="articles" key="1"/>);
+      buttons.push(<BreakButton key={buttons.lenth +2} className="btn" to="articles" />);
     }
 
     return (
