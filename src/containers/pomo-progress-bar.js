@@ -57,18 +57,22 @@ export class PomoProgressBar extends React.Component {
   }
 
   render () {
-    let options = [];
+    let buttons = [
+      <StartPausePomoButton className="btn" isRunning={this.props.isRunning} pause={this.pausePomo} start={this.startPomo} />,
+      <ResetPomoButton className='btn' reset={this.resetPomo} />
+    ];
+
     if (this.props.isComplete) {
-      options.push(<BreakButton to="articles" key="1"/>);
+      buttons.push(<BreakButton className="btn" to="articles" key="1"/>);
     }
 
     return (
       <div className="pomodoro-progress-bar">
         <CircularProgress percentage={this.props.percentage} totalSeconds={this.props.totalSeconds}/>
         <ChangeTimeForm onChange={this.setPomoMinutes} value={this.props.totalSeconds}/>
-        <StartPausePomoButton className="start-pomo-btn" isRunning={this.props.isRunning} pause={this.pausePomo} start={this.startPomo} />
-        <ResetPomoButton reset={this.resetPomo} />
-        {options}
+        <div className="buttons">
+          {buttons}
+        </div>
       </div>
     )
   }
