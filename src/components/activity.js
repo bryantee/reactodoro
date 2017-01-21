@@ -1,9 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { ListItem } from 'material-ui/List';
 
 const Activity = (props) => {
   const className = props.isSelected ? 'selected' : null;
   return (
-    <li id={props.id} className={className}>{props.name} -- Complete: {props.completedSessions} </li>
+      <ListItem
+        onClick={props.onClick.bind(this, props.id)}
+        id={props.id}
+        className={className}
+      >
+        {props.name}  -- {props.completedSessions}
+      </ListItem>
+
   )
 }
 

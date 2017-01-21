@@ -1,6 +1,7 @@
 import React from 'react';
 import Activity from './activity';
 import AddActivityForm from './add-activity-form';
+import { List } from 'material-ui/List';
 
 const ActivityList = (props) => {
   let activityList;
@@ -12,11 +13,11 @@ const ActivityList = (props) => {
 
 
   return (
-    <div>
+    <div className="activity-box">
       <AddActivityForm handleSubmit={props.handleSubmit} handleTextChange={props.handleTextChange} value={props.addActivityText}/>
-      <ul onClick={props.handler}>
+      <List>
         {activityList}
-      </ul>
+      </List>
     </div>
   );
 }
