@@ -12,15 +12,29 @@ body {
 
 .pomodoro-progress-bar {
   flex: 1;
-  margin: 2%;
-  padding: 2%;
 }
 
 .activity-box {
   flex: 2;
+}
+
+.panel {
   margin: 2%;
   padding: 2%;
 }
+
+.article-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 600px) {
+  .article {
+    margin: 1em;
+    max-width: 45%;
+  }
+}
+
 
 .CircularProgressbar .CircularProgressbar-path {
   stroke: #3e98c7;
@@ -49,4 +63,8 @@ body {
 .buttons {
   display: flex;
   justify-content: space-around;
+}
+
+.btn {
+  flex-grow: 1;
 }

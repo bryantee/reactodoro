@@ -13,7 +13,7 @@ const ActivityList = (props) => {
   }
 
   return (
-    <Paper zDepth={2} className="activity-box">
+    <Paper zDepth={2} className="activity-box panel">
       <AddActivityForm handleSubmit={props.handleSubmit} handleTextChange={props.handleTextChange} value={props.addActivityText}/>
       <List>
         {activityList}

@@ -68,7 +68,7 @@ export class PomoProgressBar extends React.Component {
     }
 
     return (
-      <Paper zDepth={2} className="pomodoro-progress-bar">
+      <Paper zDepth={2} className="pomodoro-progress-bar panel">
         <CircularProgress percentage={this.props.percentage} totalSeconds={this.props.totalSeconds}/>
         <ChangeTimeForm onChange={this.setPomoMinutes} value={this.props.totalSeconds}/>
         <div className="buttons">
