@@ -4,7 +4,7 @@ import PomoProgressBar from '../containers/pomo-progress-bar';
 
 const Pomo = () => {
   return (
-      <div className="container">
+    <div className="container">
       <PomoProgressBar className="col-md-6"/>
       <ActivityListContainer className="col-md-6"/>
     </div>

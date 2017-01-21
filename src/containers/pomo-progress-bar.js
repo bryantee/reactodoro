@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
+import Paper from 'material-ui/Paper';
 
 // components
 import CircularProgress from '../components/circular-progress';
@@ -67,13 +68,13 @@ export class PomoProgressBar extends React.Component {
     }
 
     return (
-      <div className="pomodoro-progress-bar">
+      <Paper zDepth={2} className="pomodoro-progress-bar">
         <CircularProgress percentage={this.props.percentage} totalSeconds={this.props.totalSeconds}/>
         <ChangeTimeForm onChange={this.setPomoMinutes} value={this.props.totalSeconds}/>
         <div className="buttons">
           {buttons}
         </div>
-      </div>
+      </Paper>
     )
   }
 }
