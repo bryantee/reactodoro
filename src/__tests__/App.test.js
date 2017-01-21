@@ -23,7 +23,7 @@ import Article from '../components/article';
 import { NewsArticles } from '../containers/news-articles';
 import BreakButton from '../components/break-button';
 import { RaisedButton } from 'material-ui';
-import { ListItem, List } from 'material-ui';
+import { ListItem, List, Paper } from 'material-ui';
 
 //
 import store from '../store';
@@ -50,24 +50,24 @@ describe('Smoke tests', () => {
     expect(wrapper).to.have.lengthOf(1);
   });
   it('Activity component renders without crashing', () => {
-    const activity = document.createElement('div');
-    ReactDOM.render(<Activity />, activity);
+    const wrapper = shallow(<Activity onClick={() => {}} />);
+    expect(wrapper).to.exist;
   });
   it('Activity list component renders without crashing', () => {
-    const activityList = document.createElement('div');
-    const list = ['tennis', 'golf', 'bowling'];
-    ReactDOM.render(<ActivityList list={list} />, activityList);
+    const wrapper = shallow(<ActivityList />);
+    expect(wrapper).to.exist;
   });
   it('Activity List Container component renders without crashing', () => {
     const wrapper = shallow(<ActivityListContainer />);
+    expect(wrapper).to.exist;
   });
   it('Add activity form component renders without crashing', () => {
-    const form = document.createElement('div');
-    ReactDOM.render(<AddActivityForm />, form);
+    const wrapper = shallow(<AddActivityForm />);
+    expect(wrapper).to.exist;
   });
   it('About component renders', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<About />, div);
+    const wrapper = shallow(<About />);
+    expect(wrapper).to.exist;
   });
   it('Articles List component renders', () => {
     const div = document.createElement('div');
@@ -154,8 +154,8 @@ describe('Shallow Components', ()=> {
       renderer.render(<PomoProgressBar />);
       const result = renderer.getRenderOutput();
 
-      result.type.should.equal('div');
-      result.props.className.should.equal('pomodoro-progress-bar');
+      result.type.should.equal(Paper);
+      result.props.className.should.equal('pomodoro-progress-bar panel');
       result.props.children.length.should.be.above(1);
     });
     it('renders "take break" button when state is complete');
