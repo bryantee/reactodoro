@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
+import Paper from 'material-ui/Paper';
 
 // components
 import CircularProgress from '../components/circular-progress';
@@ -47,8 +48,8 @@ export class PomoProgressBar extends React.Component {
     this.props.dispatch(actions.pausePomo());
   }
 
-  setPomoMinutes(event) {
-    this.props.dispatch(actions.setPomoSeconds(event.target.value * 60));
+  setPomoMinutes(event, value) {
+    this.props.dispatch(actions.setPomoSeconds(value * 60));
   }
 
   resetPomo() {
@@ -57,19 +58,23 @@ export class PomoProgressBar extends React.Component {
   }
 
   render () {
-    let options = [];
+    let buttons = [
+      <StartPausePomoButton key="1" className="btn" isRunning={this.props.isRunning} pause={this.pausePomo} start={this.startPomo} />,
+      <ResetPomoButton key="2" className='btn' reset={this.resetPomo} />
+    ];
+
     if (this.props.isComplete) {
-      options.push(<BreakButton to="articles" key="1"/>);
+      buttons.push(<BreakButton key={buttons.lenth +2} className="btn" to="articles" />);
     }
 
     return (
-      <div className="pomodoro-progress-bar">
+      <Paper zDepth={2} className="pomodoro-progress-bar panel">
         <CircularProgress percentage={this.props.percentage} totalSeconds={this.props.totalSeconds}/>
         <ChangeTimeForm onChange={this.setPomoMinutes} value={this.props.totalSeconds}/>
-        <StartPausePomoButton className="start-pomo-btn" isRunning={this.props.isRunning} pause={this.pausePomo} start={this.startPomo} />
-        <ResetPomoButton reset={this.resetPomo} />
-        {options}
-      </div>
+        <div className="buttons">
+          {buttons}
+        </div>
+      </Paper>
     )
   }
 }

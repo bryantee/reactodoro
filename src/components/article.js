@@ -1,14 +1,24 @@
-import React from 'react'
+import React from 'react';
+import { Card, CardTitle, CardText, CardMedia, CardActions } from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+
 
 const Article = (props) => {
+  const image = props.data.multimedia[0] ? props.data.multimedia[4].url : null;
   return (
-    <div>
-      <a href={props.data.url}>
-        <h1>{props.data.title}</h1>
-      </a>
-      <p>{props.data.abstract}</p>
-      <img alt="article-thumbnail" src={props.data.multimedia[0] ? props.data.multimedia[0].url : ''} />
-    </div>
+    <Card className="panel article">
+      <CardMedia>
+        {image && <img alt="article thumb" src={image} /> }
+      </CardMedia>
+      <CardTitle
+        title={props.data.title}
+        subtitle={props.data.subsection}
+      />
+      <CardText>{props.data.abstract}</CardText>
+      <CardActions>
+        <FlatButton>Read More</FlatButton>
+      </CardActions>
+    </Card>
   )
 }
 

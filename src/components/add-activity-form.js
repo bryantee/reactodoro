@@ -1,10 +1,13 @@
-import React from 'react'
+import React from 'react';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 const AddActivityForm = (props) => {
   return (
-    <form className="form-inline" onSubmit={props.handleSubmit}>
-      <input type="text" className="form-control" placeholder="New Activity" onChange={props.handleTextChange} value={props.value}/>
-      <button type="submit" className="btn btn-primary">Submit</button>
+    <form onSubmit={props.handleSubmit}>
+      <TextField id="add-activity-text" type="text" placeholder="New Activity" onChange={props.handleTextChange} value={props.value}/>
+      <RaisedButton type="submit" label="Add" primary={true} />
     </form>
   )
 }

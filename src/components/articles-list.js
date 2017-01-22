@@ -9,7 +9,7 @@ const ArticlesList = (props) => {
     });
   }
   return (
-    <div>
+    <div  className="article-list">
       {articles}
     </div>
   )
