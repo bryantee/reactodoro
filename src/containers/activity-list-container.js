@@ -18,8 +18,8 @@ export class ActivityListContainer extends React.Component {
     this.handleActivityTextChange = this.handleActivityTextChange.bind(this);
   }
 
-  selectActivity(event) {
-    const id = parseInt(event.target.id, 10);
+  selectActivity(id, event) {
+    console.log('selected activity', id);
     this.props.dispatch(actions.selectActivity(id));
   }
 
