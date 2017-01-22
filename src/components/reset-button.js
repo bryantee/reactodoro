@@ -1,9 +1,9 @@
 import React from 'react'
+import RaisedButton from 'material-ui/RaisedButton';
 
 const ResetPomoButton = ({ reset }) => {
-  console.log('reset callback:', reset);
   return (
-    <button onClick={reset} className="btn btn-secondary">Reset</button>
+    <RaisedButton onClick={reset} secondary={true} label="RESET" />
   );
 }
 

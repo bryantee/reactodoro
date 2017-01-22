@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import Title from './components/title';
+import Header from './containers/header';
+
+//theme provider material ui
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Title />
-        <div className="container">
-          {this.props.children}
+      <MuiThemeProvider>
+        <div className="App">
+          <Header />
+            {this.props.children}
         </div>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }

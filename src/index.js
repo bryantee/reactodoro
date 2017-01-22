@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute, hashHistory} from 'react-router';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import store from './store';
 
@@ -10,6 +11,8 @@ import About from './components/about';
 import Pomo from './components/pomo';
 import NewsArticles from './containers/news-articles';
 import './index.css';
+
+injectTapEventPlugin();
 
 const routes = (
   <Router history={hashHistory}>
