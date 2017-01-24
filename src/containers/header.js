@@ -21,6 +21,12 @@ class Header extends React.Component {
       console.log('Drawer Closed');
       this.setState({ open: false });
     }
+
+    openExternalLink = (url, event) => {
+      this.handleClose();
+      window.open(url, '_blank');
+    }
+
   render () {
     return (
       <div>
@@ -37,14 +43,12 @@ class Header extends React.Component {
             onTouchTap={this.handleClose}
           />
           <MenuItem
-            href="https://github.com/bryantee"
             primaryText='GitHub'
-            onTouchTap={this.handleClose}
+            onTouchTap={this.openExternalLink.bind(this, 'https://github.com/bryantee')}
           />
           <MenuItem
-            href="http://bryanswagerty.com"
             primaryText='About Me'
-            onTouchTap={this.handleClose}
+            onTouchTap={this.openExternalLink.bind(this, 'http://bryanswagerty.com/')}
           />
         </Drawer>
       </div>
