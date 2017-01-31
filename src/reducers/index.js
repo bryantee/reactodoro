@@ -82,6 +82,12 @@ export const pomoReducer = (state=initialState, action) => {
           currentSeconds: 0,
         }
 
+      case actions.REMOVE_ACTIVITY:
+        const newActivitiesArray = state.activities.filter(activity => activity.name !== action.activity);
+
+      // return new state object 
+      return {...state, activities: newActivitiesArray};
+
     default:
       return state;
     }

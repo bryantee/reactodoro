@@ -50,7 +50,7 @@ describe('Smoke tests', () => {
     expect(wrapper).to.have.lengthOf(1);
   });
   it('Activity component renders without crashing', () => {
-    const wrapper = shallow(<Activity onClick={() => {}} />);
+    const wrapper = shallow(<Activity deleteActivity={() => {}} onClick={() => {}} />);
     expect(wrapper).to.exist;
   });
   it('Activity list component renders without crashing', () => {
@@ -158,7 +158,17 @@ describe('Shallow Components', ()=> {
       result.props.className.should.equal('pomodoro-progress-bar panel');
       result.props.children.length.should.be.above(1);
     });
-    it('renders "take break" button when state is complete');
+    it('renders "take break" button when state is complete', () => {
+      const props ={};
+      props.isComplete = true;
+
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<PomoProgressBar {...props} />);
+      const result = renderer.getRenderOutput();
+
+      result.props.children[2].props.children.length.should.equal(3);
+      result.props.children[2].props.children[2].type.should.equal(BreakButton);
+    });
   });
   describe('Acitivty List', () => {
     const props = {};
@@ -179,7 +189,7 @@ describe('Shallow Components', ()=> {
   describe('Acitivity', () => {
     it('Renders a single ListItem component', () => {
       const renderer = TestUtils.createRenderer();
-      renderer.render(<Activity onClick={() => {}}/>);
+      renderer.render(<Activity deleteActivity={() => {}} onClick={() => {}}/>);
 
       const result = renderer.getRenderOutput();
       result.type.should.equal(ListItem);
