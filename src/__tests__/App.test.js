@@ -158,7 +158,17 @@ describe('Shallow Components', ()=> {
       result.props.className.should.equal('pomodoro-progress-bar panel');
       result.props.children.length.should.be.above(1);
     });
-    it('renders "take break" button when state is complete');
+    it('renders "take break" button when state is complete', () => {
+      const props ={};
+      props.isComplete = true;
+
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<PomoProgressBar {...props} />);
+      const result = renderer.getRenderOutput();
+
+      result.props.children[2].props.children.length.should.equal(3);
+      result.props.children[2].props.children[2].type.should.equal(BreakButton);
+    });
   });
   describe('Acitivty List', () => {
     const props = {};
