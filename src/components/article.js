@@ -16,7 +16,13 @@ const Article = (props) => {
       />
       <CardText>{props.data.abstract}</CardText>
       <CardActions>
-        <FlatButton>Read More</FlatButton>
+        <FlatButton
+          primaryText='Read More'
+          href={props.data.url}
+          target="_blank"
+        >
+        Read More
+      </FlatButton>
       </CardActions>
     </Card>
   )

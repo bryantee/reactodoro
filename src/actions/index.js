@@ -29,8 +29,11 @@ export const addActivity = (activity) => {
 }
 
 export const REMOVE_ACTIVITY = 'REMOVE_ACTIVITY';
-export const removeActivity = () => {
-
+export const removeActivity = (activity) => {
+  return {
+    type: REMOVE_ACTIVITY,
+    activity
+  }
 }
 
 export const SELECT_ACTIVITY = 'SELECT_ACTIVITY';
