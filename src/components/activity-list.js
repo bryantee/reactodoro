@@ -8,7 +8,7 @@ const ActivityList = (props) => {
   let activityList;
   if (props.list) {
     activityList = props.list.map((activity, index) => {
-      return <Activity isSelected={ index === props.selected ? true : false} name={activity.name} completedSessions={activity.completedSessions} key={index} id={index} onClick={props.handler} />;
+      return <Activity isSelected={ index === props.selected ? true : false} name={activity.name} completedSessions={activity.completedSessions} key={index} id={index} onClick={props.handler} deleteActivity={props.deleteActivity} />;
     });
   }
 

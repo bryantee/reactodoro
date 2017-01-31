@@ -16,6 +16,7 @@ export class ActivityListContainer extends React.Component {
     this.selectActivity = this.selectActivity.bind(this);
     this.handleActivitySubmit = this.handleActivitySubmit.bind(this);
     this.handleActivityTextChange = this.handleActivityTextChange.bind(this);
+    this.deleteActivity = this.deleteActivity.bind(this)
   }
 
   selectActivity(id, event) {
@@ -39,6 +40,10 @@ export class ActivityListContainer extends React.Component {
     });
   }
 
+  deleteActivity(activity) {
+    this.props.dispatch(actions.removeActivity(activity));
+  }
+
   render () {
     return (
       <ActivityList
@@ -48,6 +53,7 @@ export class ActivityListContainer extends React.Component {
         handleSubmit={this.handleActivitySubmit}
         handleTextChange={this.handleActivityTextChange}
         addActivityText={this.state.addActivityText}
+        deleteActivity={this.deleteActivity}
       />
     );
   }

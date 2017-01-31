@@ -50,7 +50,7 @@ describe('Smoke tests', () => {
     expect(wrapper).to.have.lengthOf(1);
   });
   it('Activity component renders without crashing', () => {
-    const wrapper = shallow(<Activity onClick={() => {}} />);
+    const wrapper = shallow(<Activity deleteActivity={() => {}} onClick={() => {}} />);
     expect(wrapper).to.exist;
   });
   it('Activity list component renders without crashing', () => {
@@ -189,7 +189,7 @@ describe('Shallow Components', ()=> {
   describe('Acitivity', () => {
     it('Renders a single ListItem component', () => {
       const renderer = TestUtils.createRenderer();
-      renderer.render(<Activity onClick={() => {}}/>);
+      renderer.render(<Activity deleteActivity={() => {}} onClick={() => {}}/>);
 
       const result = renderer.getRenderOutput();
       result.type.should.equal(ListItem);
