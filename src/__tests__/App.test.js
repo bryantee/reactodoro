@@ -24,6 +24,9 @@ import { NewsArticles } from '../containers/news-articles';
 import BreakButton from '../components/break-button';
 import { RaisedButton } from 'material-ui';
 import { ListItem, List, Paper } from 'material-ui';
+import Header from '../containers/header';
+import Badge from '../components/badge';
+import Pomo from '../components/pomo';
 
 //
 import store from '../store';
@@ -92,7 +95,21 @@ describe('Smoke tests', () => {
   it('Break Button renders without crashing', () => {
     const wrapper = shallow(<BreakButton />);
     expect(wrapper).to.exist;
-  })
+  });
+  it('Header renders without crashing', () => {
+    const wrapper = shallow(<Header />);
+    expect(wrapper).to.have.lengthOf(1);
+  });
+  it('Badge renders without crashing', () => {
+    const wrapper = shallow(<Badge />);
+    expect(wrapper).to.have.lengthOf(1);
+  });
+  it('Pomo renders without crashing', () => {
+    const wrapper = shallow(<Pomo />);
+    expect(wrapper).to.have.lengthOf(1);
+  });
+
+
 });
 describe('Shallow Components', ()=> {
   describe('Circular progress bar', ()=> {
