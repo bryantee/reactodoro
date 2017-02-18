@@ -4,7 +4,15 @@ import FlatButton from 'material-ui/FlatButton';
 
 
 const Article = (props) => {
-  const image = props.data.multimedia[0] ? props.data.multimedia[4].url : null;
+  let image = null;
+  if (props.data.multimedia.length > 0) {
+    if (props.data.multimedia[4]) {
+      image = props.data.multimedia[4].url;
+    } else {
+      image =props.data.multimedia[props.data.multimedia.length - 1].url;
+    }
+  }
+  
   return (
     <Card className="panel article">
       <CardMedia>
@@ -17,7 +25,6 @@ const Article = (props) => {
       <CardText>{props.data.abstract}</CardText>
       <CardActions>
         <FlatButton
-          primaryText='Read More'
           href={props.data.url}
           target="_blank"
         >
