@@ -24,6 +24,9 @@ import { NewsArticles } from '../containers/news-articles';
 import BreakButton from '../components/break-button';
 import { RaisedButton } from 'material-ui';
 import { ListItem, List, Paper } from 'material-ui';
+import Header from '../containers/header';
+import Badge from '../components/badge';
+import Pomo from '../components/pomo';
 
 //
 import store from '../store';
@@ -92,7 +95,21 @@ describe('Smoke tests', () => {
   it('Break Button renders without crashing', () => {
     const wrapper = shallow(<BreakButton />);
     expect(wrapper).to.exist;
-  })
+  });
+  it('Header renders without crashing', () => {
+    const wrapper = shallow(<Header />);
+    expect(wrapper).to.have.lengthOf(1);
+  });
+  it('Badge renders without crashing', () => {
+    const wrapper = shallow(<Badge />);
+    expect(wrapper).to.have.lengthOf(1);
+  });
+  it('Pomo renders without crashing', () => {
+    const wrapper = shallow(<Pomo />);
+    expect(wrapper).to.have.lengthOf(1);
+  });
+
+
 });
 describe('Shallow Components', ()=> {
   describe('Circular progress bar', ()=> {
@@ -218,6 +235,42 @@ describe('Shallow Components', ()=> {
       renderer.render(<ActivityListContainer />);
       const result = renderer.getRenderOutput();
       result.type.should.equal(ActivityList);
+    });
+  });
+  describe('Article', () => {
+    it('renders proper image if length is 5', () => {
+      const props = {
+        data: {
+          multimedia: [
+            {url: 'http://example.com/cat1.jpg'},
+            {url: 'http://example.com/cat2.jpg'},
+            {url: 'http://example.com/cat3.jpg'},
+            {url: 'http://example.com/cat4.jpg'},
+            {url: 'http://example.com/cat5.jpg'},
+            {url: 'http://example.com/cat6.jpg'}
+          ]
+        }
+      };
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<Article {...props} />);
+      const result = renderer.getRenderOutput();
+      result.props.children[0].props.children.type.should.equal('img');
+      result.props.children[0].props.children.props.src.should.equal(props.data.multimedia[4].url)
+    });
+    it('renders proper image if length is 2', () => {
+      const props = {
+        data: {
+          multimedia: [
+            {url: 'http://example.com/cat1.jpg'},
+            {url: 'http://example.com/cat2.jpg'}
+          ]
+        }
+      };
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<Article {...props} />);
+      const result = renderer.getRenderOutput();
+      result.props.children[0].props.children.type.should.equal('img');
+      result.props.children[0].props.children.props.src.should.equal(props.data.multimedia[1].url)
     });
   });
 });

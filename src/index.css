@@ -18,8 +18,15 @@ body {
 }
 
 .panel {
-  margin: 2%;
-  padding: 2%;
+  margin: 4%;
+  padding: 6%;
+}
+
+@media (min-width: 600px) {
+  .panel {
+    margin: 2%;
+    padding: 2%;
+  }
 }
 
 .article-list {
