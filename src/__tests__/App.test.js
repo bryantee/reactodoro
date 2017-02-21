@@ -237,6 +237,42 @@ describe('Shallow Components', ()=> {
       result.type.should.equal(ActivityList);
     });
   });
+  describe('Article', () => {
+    it('renders proper image if length is 5', () => {
+      const props = {
+        data: {
+          multimedia: [
+            {url: 'http://example.com/cat1.jpg'},
+            {url: 'http://example.com/cat2.jpg'},
+            {url: 'http://example.com/cat3.jpg'},
+            {url: 'http://example.com/cat4.jpg'},
+            {url: 'http://example.com/cat5.jpg'},
+            {url: 'http://example.com/cat6.jpg'}
+          ]
+        }
+      };
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<Article {...props} />);
+      const result = renderer.getRenderOutput();
+      result.props.children[0].props.children.type.should.equal('img');
+      result.props.children[0].props.children.props.src.should.equal(props.data.multimedia[4].url)
+    });
+    it('renders proper image if length is 2', () => {
+      const props = {
+        data: {
+          multimedia: [
+            {url: 'http://example.com/cat1.jpg'},
+            {url: 'http://example.com/cat2.jpg'}
+          ]
+        }
+      };
+      const renderer = TestUtils.createRenderer();
+      renderer.render(<Article {...props} />);
+      const result = renderer.getRenderOutput();
+      result.props.children[0].props.children.type.should.equal('img');
+      result.props.children[0].props.children.props.src.should.equal(props.data.multimedia[1].url)
+    });
+  });
 });
 describe('Reducers (by action type)', () => {
   it('ADD_ACTIVITY', () => {
