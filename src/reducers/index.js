@@ -65,11 +65,16 @@ export const pomoReducer = (state=initialState, action) => {
 
     case actions.GET_ARTICLES:
       console.log('get articles payload:', action.payload);
+      const numberOfArticlesToRetrieve = 6;
       return handle(state, action, {
         start: s => ({ ...s }),
         finish: s => ({ ...s }),
         failure: s => ({ ...s, error: action.payload }),
-        success: s => ({ ...s, articles: action.payload.results })
+        success: s => ({ ...s, articles: action.payload.results.filter((article, index) => {
+            if (index < numberOfArticlesToRetrieve) return article;
+            return null;
+          })
+        })
       });
 
       case actions.RESET_POMO:
@@ -85,7 +90,7 @@ export const pomoReducer = (state=initialState, action) => {
       case actions.REMOVE_ACTIVITY:
         const newActivitiesArray = state.activities.filter(activity => activity.name !== action.activity);
 
-      // return new state object 
+      // return new state object
       return {...state, activities: newActivitiesArray};
 
     default:
