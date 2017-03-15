@@ -1,5 +1,6 @@
 import * as actions from '../actions/index';
 import { handle } from 'redux-pack';
+import '../modules/shuffleArray';
 // import { combineReducers } from 'redux';
 
 export const initialState = {
@@ -70,7 +71,7 @@ export const pomoReducer = (state=initialState, action) => {
         start: s => ({ ...s }),
         finish: s => ({ ...s }),
         failure: s => ({ ...s, error: action.payload }),
-        success: s => ({ ...s, articles: action.payload.results.filter((article, index) => {
+        success: s => ({ ...s, articles: action.payload.results.shuffle().filter((article, index) => {
             if (index < numberOfArticlesToRetrieve) return article;
             return null;
           })
