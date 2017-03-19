@@ -108,7 +108,7 @@ describe('Smoke tests', () => {
     const wrapper = shallow(<Pomo />);
     expect(wrapper).to.have.lengthOf(1);
   });
-
+  it('Snackbar renders without crashing');
 
 });
 describe('Shallow Components', ()=> {
@@ -211,6 +211,7 @@ describe('Shallow Components', ()=> {
       const result = renderer.getRenderOutput();
       result.type.should.equal(ListItem);
     });
+    it('Prevents user from deleting activity if selected');
   });
   describe('Add Activity Form', () => {
     it('renders form and children greater than 0', () => {
