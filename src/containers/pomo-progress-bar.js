@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 import Paper from 'material-ui/Paper';
+import Snackbar from 'material-ui/Snackbar';
 
 // components
 import CircularProgress from '../components/circular-progress';
@@ -67,6 +68,11 @@ export class PomoProgressBar extends React.Component {
       buttons.push(<BreakButton key={buttons.lenth +2} className="btn" to="articles" />);
     }
 
+    let snackbar = [];
+    if (this.props.displayMessage) {
+      snackbar.push(<Snackbar duration={this.props.displayMessage.duration} message={this.props.displayMessage.message}/>)
+    }
+
     return (
       <Paper zDepth={2} className="pomodoro-progress-bar panel">
         <CircularProgress percentage={this.props.percentage} totalSeconds={this.props.totalSeconds}/>
@@ -74,6 +80,7 @@ export class PomoProgressBar extends React.Component {
         <div className="buttons">
           {buttons}
         </div>
+        {snackbar}
       </Paper>
     )
   }
@@ -86,7 +93,8 @@ const mapStateToProps = (state, props) => ({
   currentSeconds: state.currentSeconds,
   activities: state.activities,
   isComplete: state.isComplete,
-  selectedActivity: state.selectedActivity
+  selectedActivity: state.selectedActivity,
+  displayMessage: state.displayMessage
 });
 
 export default connect(mapStateToProps)(PomoProgressBar);

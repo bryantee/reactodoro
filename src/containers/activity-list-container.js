@@ -41,7 +41,20 @@ export class ActivityListContainer extends React.Component {
   }
 
   deleteActivity(activity) {
-    this.props.dispatch(actions.removeActivity(activity));
+    // check if activity to delete is currently selected
+    console.log(`Activity: activity`);
+    console.log(`Selected activity: ${this.props.activities[this.props.selectedActivity.name]}`);
+    if (this.props.activities[activity] === this.props.activities[this.props.selectedActivity.name]) {
+      console.log('Activity selected matches activity marked for delete')
+      // dispatch display message and prevent removal
+      this.props.dispatch(actions.displayMessage({
+        duration: 5000,
+        message: `Cannot delete ${activity} when activity is currently selected`
+      }));
+    } else {
+      // good to go, remove activity from state
+      this.props.dispatch(actions.removeActivity(activity));
+    }
   }
 
   render () {

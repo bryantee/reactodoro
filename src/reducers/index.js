@@ -10,9 +10,15 @@ export const initialState = {
   isComplete: false,
   currentSeconds: 0,
   selectedActivity: 0,
+  displayMessage: {
+    duration:  0,
+    message: ''
+  },
   articles: [],
   activities: [
     // Mock activities for testing
+    // Refactor this later for empty array
+    // and mock out test activities in actual tests
     {
       name: 'Coding',
       completedSessions: 0
@@ -93,6 +99,9 @@ export const pomoReducer = (state=initialState, action) => {
 
       // return new state object
       return {...state, activities: newActivitiesArray};
+
+      case actions.DISPLAY_MESSAGE:
+        return {...state, displayMessage: action.displayMessage }
 
     default:
       return state;
