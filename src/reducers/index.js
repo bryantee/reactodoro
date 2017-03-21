@@ -11,8 +11,10 @@ export const initialState = {
   currentSeconds: 0,
   selectedActivity: 0,
   displayMessage: {
-    duration:  0,
-    message: ''
+    open: false,
+    durationToHide:  0,
+    message: '',
+    onRequestClose: null
   },
   articles: [],
   activities: [
@@ -101,7 +103,15 @@ export const pomoReducer = (state=initialState, action) => {
       return {...state, activities: newActivitiesArray};
 
       case actions.DISPLAY_MESSAGE:
-        return {...state, displayMessage: action.displayMessage }
+      // dispatch the snackbar message
+
+        return {
+          ...state,
+          open: action.open,
+          durationToHide: action.durationToHide,
+          displayMessage: action.displayMessage,
+          onRequestClose: action.onRequestClose
+        }
 
     default:
       return state;

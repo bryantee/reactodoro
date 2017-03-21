@@ -16,7 +16,8 @@ export class ActivityListContainer extends React.Component {
     this.selectActivity = this.selectActivity.bind(this);
     this.handleActivitySubmit = this.handleActivitySubmit.bind(this);
     this.handleActivityTextChange = this.handleActivityTextChange.bind(this);
-    this.deleteActivity = this.deleteActivity.bind(this)
+    this.deleteActivity = this.deleteActivity.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
   selectActivity(id, event) {
@@ -40,6 +41,15 @@ export class ActivityListContainer extends React.Component {
     });
   }
 
+  handleRequestClose() {
+    this.props.dispatch(actions.displayMessage({
+      open: false,
+      durationToHide: null,
+      message: '',
+      onRequestClose: null
+    }));
+  }
+
   deleteActivity(activity) {
     // check if activity to delete is currently selected
     console.log(`Activity: activity`);
@@ -48,8 +58,10 @@ export class ActivityListContainer extends React.Component {
       console.log('Activity selected matches activity marked for delete')
       // dispatch display message and prevent removal
       this.props.dispatch(actions.displayMessage({
-        duration: 5000,
-        message: `Cannot delete ${activity} when activity is currently selected`
+        open: true,
+        durationToHide: 5000,
+        message: `Cannot delete activity while selected`,
+        onRequestClose: this.handleRequestClose
       }));
     } else {
       // good to go, remove activity from state

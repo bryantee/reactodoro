@@ -70,7 +70,14 @@ export class PomoProgressBar extends React.Component {
 
     let snackbar = [];
     if (this.props.displayMessage) {
-      snackbar.push(<Snackbar duration={this.props.displayMessage.duration} message={this.props.displayMessage.message}/>)
+      snackbar.push(
+        <Snackbar
+          durationToClose={this.props.displayMessage.durationToClose}
+          open={this.props.displayMessage.open}
+          message={this.props.displayMessage.message} 
+          onRequestClose={this.props.displayMessage.onRequestClose}
+          />
+        )
     }
 
     return (
