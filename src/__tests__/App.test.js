@@ -6,6 +6,7 @@ import App from '../App';
 import { shallow, render } from 'enzyme';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // components
 import { PomoProgressBar } from '../containers/pomo-progress-bar';
@@ -23,7 +24,7 @@ import Article from '../components/article';
 import { NewsArticles } from '../containers/news-articles';
 import BreakButton from '../components/break-button';
 import { RaisedButton } from 'material-ui';
-import { ListItem, List, Paper } from 'material-ui';
+import { ListItem, List, Paper, Snackbar } from 'material-ui';
 import Header from '../containers/header';
 import Badge from '../components/badge';
 import Pomo from '../components/pomo';
@@ -108,7 +109,21 @@ describe('Smoke tests', () => {
     const wrapper = shallow(<Pomo />);
     expect(wrapper).to.have.lengthOf(1);
   });
-  it('Snackbar renders without crashing');
+  it('Snackbar renders without crashing', () => {
+    // const wrapper = shallow(
+    //   <MuiThemeProvider>
+    //     <Snackbar message={'hi'} open />
+    //   </MuiThemeProvider>
+    // );
+    const renderer = TestUtils.createRenderer();
+    renderer.render(
+      <MuiThemeProvider>
+        <Snackbar message={'hi'} open />
+      </MuiThemeProvider>
+    );
+    const result = renderer.getRenderOutput();
+    expect(result).to.exist;
+  });
 
 });
 describe('Shallow Components', ()=> {
