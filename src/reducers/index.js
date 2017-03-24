@@ -108,7 +108,7 @@ export const pomoReducer = (state=initialState, action) => {
         return {
           ...state,
           open: action.open,
-          durationToHide: action.durationToHide,
+          autoHideDuration: action.autoHideDuration,
           displayMessage: action.displayMessage,
           onRequestClose: action.onRequestClose
         }

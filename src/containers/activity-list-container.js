@@ -59,7 +59,7 @@ export class ActivityListContainer extends React.Component {
       // dispatch display message and prevent removal
       this.props.dispatch(actions.displayMessage({
         open: true,
-        durationToHide: 5000,
+        autoHideDuration: 5000,
         message: `Cannot delete activity while selected`,
         onRequestClose: this.handleRequestClose
       }));
