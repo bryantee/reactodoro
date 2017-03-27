@@ -12,7 +12,9 @@ const ActivityList = (props) => {
         isSelected={ index === props.selected ? true : false}
         name={activity.name}
         completedSessions={activity.completedSessions}
-        key={index} id={index} onClick={props.handler}
+        key={index}
+        id={index}
+        onClick={props.handler}
         deleteActivity={props.deleteActivity} />;
     });
   }
