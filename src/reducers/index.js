@@ -1,5 +1,6 @@
 import * as actions from '../actions/index';
 import { handle } from 'redux-pack';
+import '../modules/shuffleArray';
 // import { combineReducers } from 'redux';
 
 export const initialState = {
@@ -9,9 +10,17 @@ export const initialState = {
   isComplete: false,
   currentSeconds: 0,
   selectedActivity: 0,
+  displayMessage: {
+    open: false,
+    durationToHide:  0,
+    message: '',
+    onRequestClose: null
+  },
   articles: [],
   activities: [
     // Mock activities for testing
+    // Refactor this later for empty array
+    // and mock out test activities in actual tests
     {
       name: 'Coding',
       completedSessions: 0
@@ -65,11 +74,16 @@ export const pomoReducer = (state=initialState, action) => {
 
     case actions.GET_ARTICLES:
       console.log('get articles payload:', action.payload);
+      const numberOfArticlesToRetrieve = 6;
       return handle(state, action, {
         start: s => ({ ...s }),
         finish: s => ({ ...s }),
         failure: s => ({ ...s, error: action.payload }),
-        success: s => ({ ...s, articles: action.payload.results })
+        success: s => ({ ...s, articles: action.payload.results.shuffle().filter((article, index) => {
+            if (index < numberOfArticlesToRetrieve) return article;
+            return null;
+          })
+        })
       });
 
       case actions.RESET_POMO:
@@ -85,8 +99,19 @@ export const pomoReducer = (state=initialState, action) => {
       case actions.REMOVE_ACTIVITY:
         const newActivitiesArray = state.activities.filter(activity => activity.name !== action.activity);
 
-      // return new state object 
+      // return new state object
       return {...state, activities: newActivitiesArray};
+
+      case actions.DISPLAY_MESSAGE:
+      // dispatch the snackbar message
+
+        return {
+          ...state,
+          open: action.open,
+          autoHideDuration: action.autoHideDuration,
+          displayMessage: action.displayMessage,
+          onRequestClose: action.onRequestClose
+        }
 
     default:
       return state;

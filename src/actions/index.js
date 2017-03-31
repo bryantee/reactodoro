@@ -86,3 +86,11 @@ export const resetPomo = () => {
     type: RESET_POMO
   }
 }
+
+export const DISPLAY_MESSAGE = 'DISPLAY_MESSAGE';
+export const displayMessage = (displayMessage) => {
+  return {
+    type: DISPLAY_MESSAGE,
+    displayMessage
+  }
+}
