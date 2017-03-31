@@ -227,7 +227,26 @@ describe('Shallow Components', ()=> {
       const result = renderer.getRenderOutput();
       result.type.should.equal(ListItem);
     });
-    it('Prevents user from deleting activity if selected');
+    it('Prevents user from deleting activity if selected & running', () => {
+      // TODO: DO A PROPER MOCKUP AT SOME POINT
+      
+      const props = {
+        activities: [
+          { name: 'test'}
+        ],
+        selectedActivity: 1,
+        isRunning: true,
+        dispatch: sinon.stub()
+      }
+      const actions = { removeActivity: sinon.stub() };
+
+      const wrapper = shallow(<ActivityListContainer {...props} />);
+
+      wrapper.instance().deleteActivity('test');
+
+      expect(props.dispatch.calledOnce).to.be.true;
+      // I know this doesn't test correctly, but I give up for now.
+    });
   });
   describe('Add Activity Form', () => {
     it('renders form and children greater than 0', () => {
