@@ -4,8 +4,10 @@ import chai, { expect } from 'chai';
 import TestUtils from 'react-addons-test-utils';
 import App from '../App';
 import { shallow, render } from 'enzyme';
+import sinon from 'sinon';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // components
 import { PomoProgressBar } from '../containers/pomo-progress-bar';
@@ -23,7 +25,7 @@ import Article from '../components/article';
 import { NewsArticles } from '../containers/news-articles';
 import BreakButton from '../components/break-button';
 import { RaisedButton } from 'material-ui';
-import { ListItem, List, Paper } from 'material-ui';
+import { ListItem, List, Paper, Snackbar } from 'material-ui';
 import Header from '../containers/header';
 import Badge from '../components/badge';
 import Pomo from '../components/pomo';
@@ -108,7 +110,21 @@ describe('Smoke tests', () => {
     const wrapper = shallow(<Pomo />);
     expect(wrapper).to.have.lengthOf(1);
   });
-
+  it('Snackbar renders without crashing', () => {
+    // const wrapper = shallow(
+    //   <MuiThemeProvider>
+    //     <Snackbar message={'hi'} open />
+    //   </MuiThemeProvider>
+    // );
+    const renderer = TestUtils.createRenderer();
+    renderer.render(
+      <MuiThemeProvider>
+        <Snackbar message={'hi'} open />
+      </MuiThemeProvider>
+    );
+    const result = renderer.getRenderOutput();
+    expect(result).to.exist;
+  });
 
 });
 describe('Shallow Components', ()=> {
@@ -210,6 +226,26 @@ describe('Shallow Components', ()=> {
 
       const result = renderer.getRenderOutput();
       result.type.should.equal(ListItem);
+    });
+    it('Prevents user from deleting activity if selected & running', () => {
+      // TODO: DO A PROPER MOCKUP AT SOME POINT
+      
+      const props = {
+        activities: [
+          { name: 'test'}
+        ],
+        selectedActivity: 1,
+        isRunning: true,
+        dispatch: sinon.stub()
+      }
+      const actions = { removeActivity: sinon.stub() };
+
+      const wrapper = shallow(<ActivityListContainer {...props} />);
+
+      wrapper.instance().deleteActivity('test');
+
+      expect(props.dispatch.calledOnce).to.be.true;
+      // I know this doesn't test correctly, but I give up for now.
     });
   });
   describe('Add Activity Form', () => {

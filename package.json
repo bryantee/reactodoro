@@ -4,7 +4,8 @@
   "private": true,
   "devDependencies": {
     "enzyme": "^2.7.0",
-    "react-scripts": "0.8.4"
+    "react-scripts": "0.8.4",
+    "sinon": "^2.1.0"
   },
   "dependencies": {
     "chai": "^3.5.0",
