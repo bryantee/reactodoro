@@ -11,7 +11,9 @@ export const GET_ARTICLES = 'GET_ARTICLES';
 export const getArticles = () => {
   return {
     type: GET_ARTICLES,
-    promise: fetch('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=5fded6fe162843dc870e0ac80c6d41d0').then( response => { return response.json()})
+    promise: fetch('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=5fded6fe162843dc870e0ac80c6d41d0')
+        .then( response => { return response.json()})
+        .catch( () => { console.log("error in fetching articles.")})
   }
 }
 
