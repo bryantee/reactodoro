@@ -3,7 +3,10 @@ import { handle } from 'redux-pack';
 import '../modules/shuffleArray';
 // import { combineReducers } from 'redux';
 
-export const initialState = {
+export const localStorageKey = 'reduxState';
+const localStorageState = window.localStorage ? localStorage.getItem(localStorageKey) : null;
+
+export const initialState = localStorageState ? JSON.parse(localStorageState) : {
   isRunning: false,
   totalSeconds: 1500,
   percentage: 0,
@@ -21,14 +24,6 @@ export const initialState = {
     // Mock activities for testing
     // Refactor this later for empty array
     // and mock out test activities in actual tests
-    // {
-    //   name: 'Coding',
-    //   completedSessions: 0
-    // },
-    // {
-    //   name: 'Writing blog posts',
-    //   completedSessions: 1
-    // }
   ]
 };
 
