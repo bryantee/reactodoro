@@ -313,7 +313,7 @@ describe('Shallow Components', ()=> {
 describe('Reducers (by action type)', () => {
   it('ADD_ACTIVITY', () => {
     store.dispatch(actions.addActivity('test activity'));
-    store.getState().activities.length.should.equal(3);
+    store.getState().activities.length.should.equal(1);
   });
   it('SELECT_ACTIVITY', () => {
     store.dispatch(actions.selectActivity(1));
@@ -328,7 +328,7 @@ describe('Reducers (by action type)', () => {
     store.getState().isRunning.should.equal(false);
   });
   it('COMPLETE_POMO', () => {
-    const testActivity = 'Coding';
+    const testActivity = 'test activity';
     let currentStateActivity;
 
     const getActivityInfo = (activity) => {
