@@ -4,6 +4,9 @@
   "private": true,
   "devDependencies": {
     "enzyme": "^2.7.0",
+    "husky": "^0.14.3",
+    "prettier": "^1.12.1",
+    "pretty-quick": "^1.4.1",
     "react-scripts": "0.8.4",
     "sinon": "^2.1.0"
   },
@@ -26,6 +29,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "precommit": "pretty-quick --staged"
   }
 }

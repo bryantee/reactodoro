@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import Header from './containers/header';
+import React, { Component } from "react";
+import Header from "./containers/header";
 
 //theme provider material ui
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 export class App extends Component {
   render() {
@@ -10,7 +10,7 @@ export class App extends Component {
       <MuiThemeProvider>
         <div className="App">
           <Header />
-            {this.props.children}
+          {this.props.children}
         </div>
       </MuiThemeProvider>
     );

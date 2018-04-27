@@ -1,9 +1,14 @@
-import React from 'react';
-import { Card, CardTitle, CardText, CardMedia, CardActions } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import React from "react";
+import {
+  Card,
+  CardTitle,
+  CardText,
+  CardMedia,
+  CardActions
+} from "material-ui/Card";
+import FlatButton from "material-ui/FlatButton";
 
-
-const Article = (props) => {
+const Article = props => {
   const { multimedia } = props.data;
   let image;
   const imageRez = 4;
@@ -17,24 +22,16 @@ const Article = (props) => {
 
   return (
     <Card className="panel article">
-      <CardMedia>
-        {image && <img alt="article thumb" src={image} /> }
-      </CardMedia>
-      <CardTitle
-        title={props.data.title}
-        subtitle={props.data.subsection}
-      />
+      <CardMedia>{image && <img alt="article thumb" src={image} />}</CardMedia>
+      <CardTitle title={props.data.title} subtitle={props.data.subsection} />
       <CardText>{props.data.abstract}</CardText>
       <CardActions>
-        <FlatButton
-          href={props.data.url}
-          target="_blank"
-        >
-        Read More
-      </FlatButton>
+        <FlatButton href={props.data.url} target="_blank">
+          Read More
+        </FlatButton>
       </CardActions>
     </Card>
-  )
-}
+  );
+};
 
 export default Article;
