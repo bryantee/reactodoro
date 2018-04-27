@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "chai": "^3.5.0",
+    "dev-dependencies": "^1.0.0",
     "material-ui": "^0.16.7",
     "react": "^15.4.1",
     "react-addons-test-utils": "^15.4.2",

@@ -21,14 +21,14 @@ export const initialState = {
     // Mock activities for testing
     // Refactor this later for empty array
     // and mock out test activities in actual tests
-    {
-      name: 'Coding',
-      completedSessions: 0
-    },
-    {
-      name: 'Writing blog posts',
-      completedSessions: 1
-    }
+    // {
+    //   name: 'Coding',
+    //   completedSessions: 0
+    // },
+    // {
+    //   name: 'Writing blog posts',
+    //   completedSessions: 1
+    // }
   ]
 };
 
