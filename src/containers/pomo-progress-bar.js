@@ -11,6 +11,8 @@ import StartPausePomoButton from "../components/start-pause-pomo-button";
 import ResetPomoButton from "../components/reset-button";
 import BreakButton from "../components/break-button";
 
+import tomato from "../assets/tomato.png";
+
 export class PomoProgressBar extends React.Component {
   constructor(props) {
     super(props);
@@ -19,6 +21,7 @@ export class PomoProgressBar extends React.Component {
     this.pausePomo = this.pausePomo.bind(this);
     this.setPomoMinutes = this.setPomoMinutes.bind(this);
     this.resetPomo = this.resetPomo.bind(this);
+    this.notify = this.notify.bind(this);
   }
 
   startPomo() {
@@ -32,12 +35,18 @@ export class PomoProgressBar extends React.Component {
         clearInterval(intervalId);
         return;
       }
+
       // check if pomo is complete, return if it is
       if (this.props.currentSeconds === this.props.totalSeconds + 1) {
         this.props.dispatch(
           actions.completePomo(
             this.props.activities[this.props.selectedActivity].name
           )
+        );
+
+        this.notify(
+          "Pomo Complete! Take a break...",
+          this.props.activities[this.props.selectedActivity].name
         );
         clearInterval(intervalId);
         return;
@@ -59,6 +68,19 @@ export class PomoProgressBar extends React.Component {
   resetPomo() {
     console.log("resetPomo called from function");
     this.props.dispatch(actions.resetPomo());
+  }
+
+  notify(body, title, icon = tomato, sticky = true, image = "") {
+    const options = {
+      body,
+      icon,
+      sticky,
+      image
+    };
+
+    if (Notification in window) {
+      new Notification(title, options);
+    }
   }
 
   render() {
