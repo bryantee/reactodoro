@@ -1,21 +1,20 @@
-import React from 'react'
-import ArticlesList from '../components/articles-list';
-import { connect } from 'react-redux';
-import * as actions from '../actions/index';
+import React from "react";
+import ArticlesList from "../components/articles-list";
+import { connect } from "react-redux";
+import * as actions from "../actions/index";
 
 export class NewsArticles extends React.Component {
-
   componentDidMount() {
     // AJAX
     this.props.dispatch(actions.getArticles());
   }
 
-  render () {
+  render() {
     return (
       <div>
         <ArticlesList articles={this.props.articles} />
       </div>
-    )
+    );
   }
 }
 

@@ -1,16 +1,16 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import * as actions from '../actions/index';
+import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../actions/index";
 
 //components
-import ActivityList from '../components/activity-list';
+import ActivityList from "../components/activity-list";
 
 export class ActivityListContainer extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      addActivityText: ''
+      addActivityText: ""
     };
 
     this.selectActivity = this.selectActivity.bind(this);
@@ -29,7 +29,7 @@ export class ActivityListContainer extends React.Component {
     this.props.dispatch(actions.addActivity(this.state.addActivityText));
     // manage localstate of input through component
     this.setState({
-      addActivityText: ''
+      addActivityText: ""
     });
   }
 
@@ -41,31 +41,39 @@ export class ActivityListContainer extends React.Component {
   }
 
   handleRequestClose() {
-    this.props.dispatch(actions.displayMessage({
-      open: false,
-      durationToHide: null,
-      message: '',
-      onRequestClose: null
-    }));
+    this.props.dispatch(
+      actions.displayMessage({
+        open: false,
+        durationToHide: null,
+        message: "",
+        onRequestClose: null
+      })
+    );
   }
 
   deleteActivity(activity) {
     // check if activity to delete is currently selected & running
-    if (this.props.activities[activity] === this.props.activities[this.props.selectedActivity.name] && this.props.isRunning) {
+    if (
+      this.props.activities[activity] ===
+        this.props.activities[this.props.selectedActivity.name] &&
+      this.props.isRunning
+    ) {
       // dispatch display message and prevent removal
-      this.props.dispatch(actions.displayMessage({
-        open: true,
-        autoHideDuration: 5000,
-        message: `Cannot delete activity while selected & Running`,
-        onRequestClose: this.handleRequestClose
-      }));
+      this.props.dispatch(
+        actions.displayMessage({
+          open: true,
+          autoHideDuration: 5000,
+          message: `Cannot delete activity while selected & Running`,
+          onRequestClose: this.handleRequestClose
+        })
+      );
     } else {
       // good to go, remove activity from state
       this.props.dispatch(actions.removeActivity(activity));
     }
   }
 
-  render () {
+  render() {
     return (
       <ActivityList
         selected={this.props.selectedActivity}
