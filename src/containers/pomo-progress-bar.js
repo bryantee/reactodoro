@@ -78,9 +78,7 @@ export class PomoProgressBar extends React.Component {
       image
     };
 
-    if (Notification in window) {
-      new Notification(title, options);
-    }
+    new Notification(title, options);
   }
 
   render() {
