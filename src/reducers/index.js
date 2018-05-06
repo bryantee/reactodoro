@@ -23,6 +23,9 @@ export const initialState = localStorageState
         message: "",
         onRequestClose: null
       },
+      onBreak: false,
+      breakTimeRemaining: 50,
+      breakTimeTotal: 100,
       articles: [],
       activities: [
         // Mock activities for testing
@@ -130,6 +133,26 @@ export const pomoReducer = (state = initialState, action) => {
         autoHideDuration: action.autoHideDuration,
         displayMessage: action.displayMessage,
         onRequestClose: action.onRequestClose
+      };
+
+    case actions.DECREMENT_BREAK_TIMER:
+      return {
+        ...state,
+        breakTimeRemaining: state.breakTimeRemaining - 1
+      };
+
+    case actions.STOP_BREAK_TIMER:
+      return {
+        ...state,
+        onBreak: false
+      };
+
+    case actions.START_BREAK_TIMER:
+      return {
+        ...state,
+        onBreak: true,
+        breakTimeRemaining: action.time,
+        breakTimeTotal: action.time
       };
 
     default:
