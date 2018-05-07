@@ -1,10 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import * as actions from "../actions/index";
+import React from "react";
 import LinearProgress from "material-ui/LinearProgress";
 import Card from "material-ui/Card";
 import CardTitle from "material-ui/Card/CardTitle";
-import CardText from "material-ui/Card/CardText";
 
 import { Duration } from "luxon";
 

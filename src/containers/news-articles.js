@@ -2,15 +2,9 @@ import React from "react";
 import ArticlesList from "../components/articles-list";
 import { connect } from "react-redux";
 import * as actions from "../actions/index";
-import { BreakTimer } from "./break-timer";
+import { BreakTimer } from "../components/break-timer";
 
 export class NewsArticles extends React.Component {
-  constructor(props) {
-    super(props);
-
-    // this.renderBreakComponent = this.renderBreakComponent.bind(this);
-  }
-
   componentDidMount() {
     this.props.dispatch(actions.getArticles());
 
