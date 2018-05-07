@@ -29,6 +29,7 @@ import { ListItem, List, Paper, Snackbar } from "material-ui";
 import Header from "../containers/header";
 import Badge from "../components/badge";
 import Pomo from "../components/pomo";
+import { BreakTimer } from "../components/break-timer";
 
 //
 import store from "../store";
@@ -132,6 +133,12 @@ describe("Smoke tests", () => {
     );
     const result = renderer.getRenderOutput();
     expect(result).to.exist;
+  });
+  it("BreakTimer component renders w/o crashing", () => {
+    const wrapper = shallow(
+      <BreakTimer breakTimeRemaining={50} breakTimeTotal={100} />
+    );
+    expect(wrapper).to.exist;
   });
 });
 describe("Shallow Components", () => {
@@ -321,6 +328,13 @@ describe("Shallow Components", () => {
         props.data.multimedia[1].url
       );
     });
+  });
+  it("BreakTimer Component", () => {
+    it("Renders correct value for LinearProgressBar");
+    it("Pause button dispatches correct action");
+    it("Un-pause button dispatches correct action");
+    it("Displays correct text and button when complete");
+    it("Display correct text and UI when in progress");
   });
 });
 describe("Reducers (by action type)", () => {
