@@ -3,15 +3,12 @@ import LinearProgress from "material-ui/LinearProgress";
 import Card from "material-ui/Card";
 import CardTitle from "material-ui/Card/CardTitle";
 
-import { Duration } from "luxon";
+import moment from "moment";
 
 export const BreakTimer = ({ breakTimeRemaining, breakTimeTotal }) => {
   const getTime = timeInSeconds => {
-    const duration = Duration.fromObject({
-      seconds: breakTimeRemaining,
-      numberingSystem: "latn"
-    });
-    return `${duration.minutes}:${duration.seconds}`;
+    const duration = moment.duration(breakTimeRemaining, "seconds");
+    return `${duration.minutes()}:${duration.seconds()}`;
   };
 
   return (

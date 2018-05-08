@@ -329,7 +329,7 @@ describe("Shallow Components", () => {
       );
     });
   });
-  it("BreakTimer Component", () => {
+  describe("BreakTimer Component", () => {
     it("Renders correct value for LinearProgressBar");
     it("Pause button dispatches correct action");
     it("Un-pause button dispatches correct action");

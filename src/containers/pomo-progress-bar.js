@@ -104,7 +104,7 @@ export class PomoProgressBar extends React.Component {
 
     if (this.props.isComplete) {
       buttons.push(
-        <BreakButton key={buttons.lenth + 2} className="btn" to="articles" />
+        <BreakButton key={buttons.length + 2} className="btn" to="articles" />
       );
     }
 
