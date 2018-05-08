@@ -74,6 +74,20 @@ export const incrementSecond = () => {
   };
 };
 
+export const DECREMENT_BREAK_TIMER = "DECREMENT_BREAK_TIMER";
+export const decrementBreakTimer = () => {
+  return {
+    type: DECREMENT_BREAK_TIMER
+  };
+};
+
+export const STOP_BREAK_TIMER = "STOP_BREAK_TIMER";
+export const stopBreakTimer = () => {
+  return {
+    type: STOP_BREAK_TIMER
+  };
+};
+
 export const RUN_POMO = "RUN_POMO";
 export const runPomo = () => {
   return {
@@ -93,5 +107,13 @@ export const displayMessage = displayMessage => {
   return {
     type: DISPLAY_MESSAGE,
     displayMessage
+  };
+};
+
+export const START_BREAK_TIMER = "START_BREAK_TIMER";
+export const startBreakTimer = time => {
+  return {
+    type: START_BREAK_TIMER,
+    time
   };
 };

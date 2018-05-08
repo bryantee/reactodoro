@@ -22,6 +22,7 @@ export class PomoProgressBar extends React.Component {
     this.setPomoMinutes = this.setPomoMinutes.bind(this);
     this.resetPomo = this.resetPomo.bind(this);
     this.notify = this.notify.bind(this);
+    this.startBreak = this.startBreak.bind(this);
   }
 
   startPomo() {
@@ -44,16 +45,24 @@ export class PomoProgressBar extends React.Component {
           )
         );
 
+        this.props.dispatch(actions.startBreakTimer(300));
         this.notify(
           "Pomo Complete! Take a break...",
           this.props.activities[this.props.selectedActivity].name
         );
+
         clearInterval(intervalId);
         return;
       }
       // set the state for percentage during each loop through
       this.props.dispatch(actions.incrementSecond());
     }, 1000);
+  }
+
+  startBreak() {
+    // dispatch event
+    // run timer
+    // clean timer
   }
 
   pausePomo() {
@@ -78,9 +87,7 @@ export class PomoProgressBar extends React.Component {
       image
     };
 
-    if (Notification in window) {
-      new Notification(title, options);
-    }
+    new Notification(title, options);
   }
 
   render() {
@@ -97,7 +104,7 @@ export class PomoProgressBar extends React.Component {
 
     if (this.props.isComplete) {
       buttons.push(
-        <BreakButton key={buttons.lenth + 2} className="btn" to="articles" />
+        <BreakButton key={buttons.length + 2} className="btn" to="articles" />
       );
     }
 
