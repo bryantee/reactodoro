@@ -1,12 +1,14 @@
-import React from 'react';
-import CircularProgressbar from 'react-circular-progressbar';
+import React from "react";
+import CircularProgressbar from "react-circular-progressbar";
 
-const CircularProgress = (props) => {
+const CircularProgress = props => {
   return (
     <CircularProgressbar
       percentage={props.percentage}
       initialAnimation={true}
-      textForPercentage={(percentage) => `${Math.ceil((((100 - percentage) / 100) * props.totalSeconds) / 60)}`}
+      textForPercentage={percentage =>
+        `${Math.ceil((100 - percentage) / 100 * props.totalSeconds / 60)}`
+      }
     />
   );
 };

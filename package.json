@@ -4,12 +4,18 @@
   "private": true,
   "devDependencies": {
     "enzyme": "^2.7.0",
-    "react-scripts": "0.8.4",
+    "husky": "^0.14.3",
+    "prettier": "^1.12.1",
+    "pretty-quick": "^1.4.1",
+    "react-scripts": "^0.9.0",
     "sinon": "^2.1.0"
   },
   "dependencies": {
     "chai": "^3.5.0",
+    "dev-dependencies": "^1.0.0",
+    "global": "^4.3.2",
     "material-ui": "^0.16.7",
+    "moment": "^2.22.1",
     "react": "^15.4.1",
     "react-addons-test-utils": "^15.4.2",
     "react-circular-progressbar": "^0.1.3",
@@ -25,7 +31,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "homepage": "http://bryanswagerty.com/reactodoro/build"
+    "eject": "react-scripts eject",
+    "precommit": "pretty-quick --staged"
+  }
 }

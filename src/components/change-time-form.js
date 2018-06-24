@@ -1,6 +1,5 @@
-import React from 'react';
-import { Slider } from 'material-ui';
-
+import React from "react";
+import { Slider } from "material-ui";
 
 export default function ChangeTimeForm(props) {
   return (
