@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "enzyme": "^2.7.0",
+    "gh-pages": "^1.2.0",
     "husky": "^0.14.3",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.4.1",
@@ -32,6 +33,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "precommit": "pretty-quick --staged"
-  }
+    "precommit": "pretty-quick --staged",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "homepage": "http://bryanswagerty.com/reactodoro/build"
 }
