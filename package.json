@@ -14,7 +14,7 @@
     "chai": "^3.5.0",
     "dev-dependencies": "^1.0.0",
     "material-ui": "^0.16.7",
-    "moment": "^2.22.1",
+    "moment": "^2.29.2",
     "react": "^15.4.1",
     "react-addons-test-utils": "^15.4.2",
     "react-circular-progressbar": "^0.1.3",
